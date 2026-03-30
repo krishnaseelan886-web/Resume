@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.Krishnaseelan — SAP Functional Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --dark: #0a0a0f;
+    --dark2: #11111a;
+    --dark3: #181826;
+    --text: #e8e0d4;
+    --muted: #7a7264;
+    --soft: #b0a898;
+    --green: #6ddfaa;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.75;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.35;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    backdrop-filter: blur(24px);
+    background: rgba(10,10,15,0.92);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--gold); letter-spacing: 0.06em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── KEYFRAMES ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse  { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  @keyframes scrollDn {
+    0%{transform:scaleY(0);transform-origin:top}
+    50%{transform:scaleY(1)}
+    100%{transform:scaleY(0);transform-origin:bottom}
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 4rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 65% 55% at 58% 52%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 35% 35% at 82% 18%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+  .hero-vline {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.15), transparent);
+  }
+  .hero-content { max-width: 720px; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.28);
+    color: var(--gold); padding: 0.4rem 1rem; border-radius: 2px;
+    font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--gold);
+    animation: pulse 2s infinite;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300; line-height: 1.04;
+    color: var(--text); margin-bottom: 0.25rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  h1 span { color: var(--gold); font-weight: 600; }
+
+  /* TAGLINE — 3 clean lines */
+  .hero-taglines {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    margin: 1.4rem 0 1.8rem;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+  .tagline-line {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.82rem; color: var(--soft); letter-spacing: 0.04em;
+  }
+  .tagline-line::before {
+    content: '';
+    width: 18px; height: 1px; background: var(--gold); flex-shrink: 0;
+  }
+  .tagline-line strong { color: var(--text); font-weight: 500; }
+
+  .hero-desc {
+    font-size: 0.92rem; color: var(--soft);
+    line-height: 1.9; max-width: 580px;
+    margin-bottom: 2.4rem;
+    animation: fadeUp 0.8s 0.35s ease both;
+    border-left: 2px solid rgba(201,168,76,0.3);
+    padding-left: 1.2rem;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 2.8rem;
+    animation: fadeUp 0.8s 0.45s ease both; flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.67rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-top: 0.3rem;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.55s ease both; }
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 0.85rem 2rem; font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.45);
+    padding: 0.85rem 2rem; font-size: 0.78rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--muted); font-size: 0.66rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 46px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollDn 2s infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 1rem;
+    font-size: 0.67rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem;
+  }
+  .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300; color: var(--text);
+    margin-bottom: 3rem; line-height: 1.1;
+  }
+  h2 em { color: var(--gold); font-style: normal; }
+
+  .tag {
+    font-size: 0.64rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    border: 1px solid rgba(138,128,112,0.28);
+    padding: 0.22rem 0.65rem; display: inline-block;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--dark2); }
+
+  .skills-categories { display: flex; flex-direction: column; gap: 3rem; }
+
+  .skill-category-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .skill-category-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.3), transparent);
+  }
+
+  .skill-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+  .skill-item {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 1.4rem 1.6rem;
+    position: relative; overflow: hidden;
+    transition: all 0.35s;
+  }
+  .skill-item::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 2px; height: 100%;
+    background: var(--gold);
+    transform: scaleY(0); transform-origin: bottom; transition: transform 0.35s;
+  }
+  .skill-item:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+  .skill-item:hover::before { transform: scaleY(1); }
+  .skill-item-name {
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+  .skill-item-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  /* ── EXPERIENCE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.06));
+  }
+  .timeline-item { padding-left: 3rem; padding-bottom: 3rem; position: relative; }
+  .timeline-dot {
+    position: absolute; left: -6px; top: 4px;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--dark);
+  }
+  .timeline-period {
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--text); margin-bottom: 0.2rem;
+  }
+  .timeline-company { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+  /* PAR = Problem → Action → Result */
+  .par-list { display: flex; flex-direction: column; gap: 1rem; }
+  .par-block {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.08);
+    border-left: 2px solid rgba(201,168,76,0.4);
+    padding: 1.1rem 1.4rem;
+    transition: border-color 0.3s;
+  }
+  .par-block:hover { border-left-color: var(--gold); }
+  .par-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0.4rem 1rem;
+    font-size: 0.83rem;
+    line-height: 1.65;
+    margin-bottom: 0.3rem;
+  }
+  .par-row:last-child { margin-bottom: 0; }
+  .par-label {
+    font-size: 0.63rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+    padding-top: 0.15rem; font-weight: 500;
+  }
+  .par-text { color: var(--soft); }
+  .par-result { color: var(--text); font-weight: 500; }
+  .par-result strong { color: var(--gold-light); }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--dark2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: all 0.4s;
+  }
+  .project-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-5px); }
+
+  .proj-type-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.9rem; flex-wrap: wrap;
+  }
+  .proj-type-label {
+    font-size: 0.62rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .proj-type-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+  .proj-live {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green);
+    background: rgba(109,223,170,0.07);
+    border: 1px solid rgba(109,223,170,0.25);
+    padding: 0.14rem 0.55rem;
+  }
+  .proj-live::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--green); animation: pulse 2s infinite;
+  }
+
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--text); margin-bottom: 0.2rem;
+  }
+  .project-industry { font-size: 0.75rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+  .project-role-badge {
+    display: inline-block;
+    font-size: 0.63rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold); background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.2rem 0.7rem; margin-bottom: 1rem;
+  }
+
+  .proj-details { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+  .proj-detail {
+    font-size: 0.82rem; color: var(--soft);
+    padding-left: 1rem; position: relative;
+  }
+  .proj-detail::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--gold); font-size: 0.68rem; top: 2px;
+  }
+
+  .proj-result {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 0.8rem 1rem; margin-top: 0.8rem;
+  }
+  .proj-result-label {
+    font-size: 0.62rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.4rem; font-weight: 500;
+  }
+  .proj-result-text { font-size: 0.8rem; color: var(--soft); line-height: 1.6; }
+  .proj-result-text strong { color: var(--green); }
+
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+
+  /* ── KEY SOLUTIONS ── */
+  #solutions { }
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.4rem;
+  }
+  .solution-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1.8rem; position: relative;
+    transition: all 0.35s; overflow: hidden;
+  }
+  .solution-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .solution-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
+  .solution-card:hover::after { transform: scaleX(1); }
+
+  .solution-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: rgba(201,168,76,0.15); line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .solution-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .solution-type {
+    font-size: 0.65rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .solution-desc { font-size: 0.82rem; color: var(--soft); line-height: 1.7; }
+  .solution-impact {
+    margin-top: 0.9rem;
+    font-size: 0.8rem; color: var(--green);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .solution-impact::before { content: '↑'; font-weight: 700; }
+
+  /* ── TOOLS ── */
+  #tools { background: var(--dark2); }
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  .tool-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .tool-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
+  .tool-icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+  .tool-name {
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--text); letter-spacing: 0.04em;
+  }
+  .tool-sub { font-size: 0.68rem; color: var(--muted); margin-top: 0.25rem; }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.3rem;
+  }
+  .edu-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1.8rem; transition: all 0.35s;
+  }
+  .edu-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
+  .edu-icon { font-size: 1.7rem; margin-bottom: 0.9rem; }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--gold); margin-bottom: 0.25rem;
+  }
+  .edu-inst { font-size: 0.82rem; color: var(--text); margin-bottom: 0.2rem; }
+  .edu-year { font-size: 0.72rem; color: var(--muted); }
+  .cert-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    margin-top: 0.9rem; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,0.35);
+    padding-bottom: 1px; transition: border-color 0.3s;
+  }
+  .cert-link:hover { border-color: var(--gold); }
+  .cert-link::after { content: ' ↗'; }
+  .progress-wrap { margin-top: 0.9rem; }
+  .progress-label { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .progress-bar { height: 2px; background: rgba(201,168,76,0.12); }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+
+  /* ── CONTACT ── */
+  #contact { text-align: center; }
+  #contact h2 { margin-bottom: 0.8rem; }
+  .contact-intent {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 300;
+    color: var(--gold); letter-spacing: 0.06em;
+    margin-bottom: 0.6rem; font-style: italic;
+  }
+  .contact-sub {
+    font-size: 0.87rem; color: var(--muted);
+    max-width: 440px; margin: 0 auto; line-height: 1.8;
+  }
+  .contact-grid {
+    display: flex; flex-wrap: wrap; gap: 1.3rem;
+    justify-content: center; margin-top: 3rem;
+  }
+  .contact-item {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 1.6rem 2rem;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0.55rem;
+    text-decoration: none; transition: all 0.35s;
+    min-width: 160px; color: var(--text);
+  }
+  .contact-item:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .contact-icon { font-size: 1.6rem; }
+  .contact-label { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .contact-value { font-size: 0.81rem; color: var(--text); }
+  .resume-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 2.5rem;
+    background: var(--gold); color: var(--dark);
+    padding: 0.9rem 2.2rem; font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .resume-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em;
+  }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section, .hero { padding: 4.5rem 1.5rem 4rem; }
+    .hero-stats { gap: 1.8rem; }
+    .hero-cta { flex-direction: column; }
+    .par-row { grid-template-columns: 70px 1fr; }
+  }
+
+  /* ── SKILL ITEM CLICKABLE ── */
+  .skill-item {
+    cursor: pointer;
+  }
+  .skill-item .click-hint {
+    font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(201,168,76,0.4);
+    margin-top: 0.7rem; transition: color 0.3s;
+  }
+  .skill-item:hover .click-hint { color: var(--gold); }
+
+  /* ── MODAL OVERLAY ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(5,5,10,0.85);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .modal-overlay.active {
+    opacity: 1; pointer-events: all;
+  }
+
+  /* ── MODAL PANEL ── */
+  .modal-panel {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.25);
+    max-width: 680px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    position: relative;
+    transform: translateY(30px) scale(0.97);
+    transition: transform 0.35s ease;
+  }
+  .modal-overlay.active .modal-panel {
+    transform: translateY(0) scale(1);
+  }
+
+  /* top gold bar */
+  .modal-panel::before {
+    content: '';
+    display: block; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+  }
+
+  .modal-inner { padding: 2.4rem 2.6rem; }
+
+  .modal-category {
+    font-size: 0.67rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .modal-category::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300;
+    color: var(--text); line-height: 1.1;
+    margin-bottom: 1.6rem;
+  }
+  .modal-title em { color: var(--gold); font-style: normal; }
+
+  .modal-summary {
+    font-size: 0.9rem; color: var(--soft);
+    line-height: 1.85; margin-bottom: 2rem;
+    border-left: 2px solid rgba(201,168,76,0.3);
+    padding-left: 1.1rem;
+  }
+
+  .modal-section-title {
+    font-size: 0.68rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.8rem; margin-top: 1.6rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .modal-section-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  .modal-points { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .modal-points li {
+    font-size: 0.85rem; color: var(--soft);
+    padding-left: 1.2rem; position: relative; line-height: 1.7;
+  }
+  .modal-points li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--gold); font-size: 0.7rem; top: 2px;
+  }
+  .modal-points li strong { color: var(--text); }
+
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+  .modal-tag {
+    font-size: 0.65rem; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.28);
+    background: rgba(201,168,76,0.06);
+    padding: 0.25rem 0.75rem;
+  }
+
+  .modal-metric-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem; margin-top: 1.6rem;
+  }
+  .modal-metric {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1rem;
+    text-align: center;
+  }
+  .modal-metric-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .modal-metric-label {
+    font-size: 0.65rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .modal-close {
+    position: absolute; top: 1.4rem; right: 1.6rem;
+    background: transparent; border: 1px solid rgba(201,168,76,0.25);
+    color: var(--muted); width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1rem;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* scrollbar inside modal */
+  .modal-panel::-webkit-scrollbar { width: 3px; }
+  .modal-panel::-webkit-scrollbar-track { background: var(--dark3); }
+  .modal-panel::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+</style>
+</head>
+<body style="">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A. Krishnaseelan</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ① HERO -->
+<section class="hero" id="about">
+  <div class="hero-bg"></div>
+  <div class="hero-vline"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite;"></span> 📍 Bangalore, India · Open to S/4HANA FI Roles</div>
+    <h1>A.Krishnaseelan <span></span></h1>
+
+    <!-- THREE CLEAN TAGLINES -->
+    <div class="hero-taglines">
+      <div class="tagline-line"><strong>SAP Business One Functional Consultant</strong></div>
+      <div class="tagline-line"><strong>Transitioning to SAP S/4HANA FI</strong></div>
+      <div class="tagline-line"><strong>Finance · Production · SQL Automation Specialist</strong></div>
+    </div>
+
+    <!-- ONE STRONG PARAGRAPH -->
+    <p class="hero-desc">SAP Business One Consultant with hands-on implementation experience, specialising in Finance, Production, and SQL-driven automation. Delivered 4+ client projects across manufacturing and trading industries. Currently transitioning into SAP S/4HANA FI.</p>
+
+    <!-- STRONG METRICS -->
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">1+</div>
+        <div class="stat-label">Year Consulting</div>
+      </div>
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Client Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">SQL Reports Built</div>
+      </div>
+      <div>
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Reporting Time Saved</div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get In Touch</a>
+      <a href="#projects" class="btn-outline">View Projects</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ② SKILLS — Functional + Technical + Implementation -->
+<section id="skills">
+  <div class="section-label">Core Competencies</div>
+  <h2>Skills &amp; <em>Capabilities</em></h2>
+  <div class="skills-categories"><div class="reveal">
+      <div class="skill-category-title">Functional</div>
+      <div class="skill-items"><div class="skill-item" data-skill="finance">
+        <div class="skill-item-name">Finance</div>
+        <div class="skill-item-tags"><span class="tag">GL</span><span class="tag">AP</span><span class="tag">AR</span><span class="tag">Banking</span><span class="tag">GST</span><span class="tag">Bank Recon</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="sales-purchase-cycle">
+        <div class="skill-item-name">Sales &amp; Purchase Cycle</div>
+        <div class="skill-item-tags"><span class="tag">Sales A/R</span><span class="tag">Purchase A/P</span><span class="tag">Quotation</span><span class="tag">GRPO</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="inventory-production">
+        <div class="skill-item-name">Inventory &amp; Production</div>
+        <div class="skill-item-tags"><span class="tag">Inventory</span><span class="tag">Production Orders</span><span class="tag">BOM</span><span class="tag">MRP</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="crm-administration">
+        <div class="skill-item-name">CRM &amp; Administration</div>
+        <div class="skill-item-tags"><span class="tag">CRM</span><span class="tag">Business Partners</span><span class="tag">Administration</span><span class="tag">Project Module</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div></div>
+    </div><div class="reveal">
+      <div class="skill-category-title">Technical</div>
+      <div class="skill-items"><div class="skill-item" data-skill="sql-reporting-level-expert">
+        <div class="skill-item-name">SQL — Reporting Level Expert</div>
+        <div class="skill-item-tags"><span class="tag">Query Reports</span><span class="tag">Stored Procedures</span><span class="tag">HANA SQL</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="sap-automation">
+        <div class="skill-item-name">SAP Automation</div>
+        <div class="skill-item-tags"><span class="tag">Transaction Notification</span><span class="tag">FMS</span><span class="tag">UDF</span><span class="tag">UDT</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="reporting">
+        <div class="skill-item-name">Reporting</div>
+        <div class="skill-item-tags"><span class="tag">Crystal Reports</span><span class="tag">Financial Reports</span><span class="tag">Custom Layouts</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div></div>
+    </div><div class="reveal">
+      <div class="skill-category-title">Implementation</div>
+      <div class="skill-items"><div class="skill-item" data-skill="project-lifecycle">
+        <div class="skill-item-name">Project Lifecycle</div>
+        <div class="skill-item-tags"><span class="tag">Requirement Gathering</span><span class="tag">TO-BE Mapping</span><span class="tag">Process Design</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="go-live">
+        <div class="skill-item-name">Go-Live</div>
+        <div class="skill-item-tags"><span class="tag">UAT</span><span class="tag">Data Migration</span><span class="tag">Go-Live Support</span><span class="tag">Stabilisation</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div><div class="skill-item" data-skill="client-delivery">
+        <div class="skill-item-name">Client Delivery</div>
+        <div class="skill-item-tags"><span class="tag">End-User Training</span><span class="tag">Documentation</span><span class="tag">Post Go-Live Support</span></div>
+        <div class="click-hint">Click to explore →</div>
+      </div></div>
+    </div></div>
+</section>
+
+<!-- ③ EXPERIENCE — Problem → Action → Result -->
+<section id="experience">
+  <div class="section-label">Career Journey</div>
+  <h2>Work <em>Experience</em></h2>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Dec 2024 — Present</div>
+      <div class="timeline-role">SAP Business One Functional Consultant</div>
+      <div class="timeline-company">Zyple Software Solutions Pvt. Ltd. — Bangalore, India</div>
+
+      <div class="par-list"><div class="par-block"><div class="par-row"><span class="par-label">Problem</span><span class="par-text">Clients spent excessive hours generating financial and inventory reports manually every month.</span></div><div class="par-row"><span class="par-label">Action</span><span class="par-text">Developed 10+ SQL Query Reports and Stored Procedures automating data extraction and formatting.</span></div><div class="par-row"><span class="par-label">Result</span><span class="par-result">Reduced manual reporting time by 40% — freeing finance teams for higher-value work.</span></div></div><div class="par-block"><div class="par-row"><span class="par-label">Problem</span><span class="par-text">Frequent invalid Business Partner entries in SAP causing downstream errors in finance and sales.</span></div><div class="par-row"><span class="par-label">Action</span><span class="par-text">Implemented Transaction Notification with validation logic and built UDF/UDT fields to enforce data standards at point of entry.</span></div><div class="par-row"><span class="par-label">Result</span><span class="par-result">Eliminated invalid master data entries — zero recurrence post-implementation across 3 client sites.</span></div></div><div class="par-block"><div class="par-row"><span class="par-label">Problem</span><span class="par-text">Manufacturing client had no structured ERP — manual spreadsheets causing reconciliation delays.</span></div><div class="par-row"><span class="par-label">Action</span><span class="par-text">Delivered full end-to-end SAP B1 implementation — configuration, data migration, UAT, and go-live.</span></div><div class="par-row"><span class="par-label">Result</span><span class="par-result">Went live on schedule, stabilised in 2 weeks, reduced manual entries by 60%.</span></div></div><div class="par-block"><div class="par-row"><span class="par-label">Problem</span><span class="par-text">Export client required complex multi-format documentation for every shipment — done manually.</span></div><div class="par-row"><span class="par-label">Action</span><span class="par-text">Built automated SQL-driven Crystal Reports for export documents integrated with SAP B1 Sales data.</span></div><div class="par-row"><span class="par-label">Result</span><span class="par-result">Cut export documentation time from hours to minutes per shipment.</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ PROJECTS — Impact-Based -->
+<section id="projects">
+  <div class="section-label">Delivered Work</div>
+  <h2>Project <em>Portfolio</em></h2>
+  <div class="projects-grid"><div class="project-card reveal"><div class="proj-type-row"><span class="proj-type-label">Ongoing Support</span><span class="proj-live">Live</span></div><div class="project-name">Hiromass Pvt. Ltd.</div><div class="project-industry">Manufacturing Industry — Bangalore</div><div class="project-role-badge">SAP B1 Support Consultant</div><div class="proj-details"><div class="proj-detail">Resolved 20+ Finance and Production module issues, maintaining zero downtime.</div><div class="proj-detail">Optimised MRP configuration to align production planning with real demand cycles.</div><div class="proj-detail">Customised Crystal Reports for management-level production and finance visibility.</div></div><div class="proj-result"><div class="proj-result-label">Result</div><div class="proj-result-text">Stable system operations · Improved report accuracy · Faster production decisions</div></div><div class="proj-tags"><span class="tag">Finance</span><span class="tag">Production</span><span class="tag">MRP</span><span class="tag">Crystal Reports</span></div></div><div class="project-card reveal"><div class="proj-type-row"><span class="proj-type-label">Full Implementation</span><span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(138,128,112,0.25);padding:0.14rem 0.55rem;">Completed</span></div><div class="project-name">Machfox Hydraulics &amp; Lubrication Systems Pvt. Ltd.</div><div class="project-industry">Industrial Hydraulics &amp; Lubrication Manufacturing</div><div class="project-role-badge">SAP B1 Functional Consultant</div><div class="proj-details"><div class="proj-detail">Implemented full ERP lifecycle — Finance, Inventory, Sales, Purchase, and Production modules.</div><div class="proj-detail">Migrated master data using DTW.</div><div class="proj-detail">Conducted UAT and delivered structured training.</div></div><div class="proj-result"><div class="proj-result-label">Result</div><div class="proj-result-text">Delivered go-live on schedule · Reduced manual entries by 60% · Stabilised within 2 weeks</div></div><div class="proj-tags"><span class="tag">Finance</span><span class="tag">Production</span><span class="tag">Inventory</span><span class="tag">DTW</span><span class="tag">Go-Live</span></div></div><div class="project-card reveal"><div class="proj-type-row"><span class="proj-type-label">Support Project</span><span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(138,128,112,0.25);padding:0.14rem 0.55rem;">Completed</span></div><div class="project-name">Alfa PEB Limited</div><div class="project-industry">Pre-Engineered Buildings &amp; Sandwich Panel Manufacturing</div><div class="project-role-badge">SAP B1 Support Consultant</div><div class="proj-details"><div class="proj-detail">Resolved Finance and Inventory module discrepancies.</div><div class="proj-detail">Supported multi-location inventory tracking.</div></div><div class="proj-result"><div class="proj-result-label">Result</div><div class="proj-result-text">Zero data integrity issues · Consistent financial closing on schedule</div></div><div class="proj-tags"><span class="tag">Finance</span><span class="tag">Inventory</span><span class="tag">Manufacturing</span></div></div><div class="project-card reveal"><div class="proj-type-row"><span class="proj-type-label">Support Project</span><span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(138,128,112,0.25);padding:0.14rem 0.55rem;">Completed</span></div><div class="project-name">Jay Keshav Exports Pvt. Ltd.</div><div class="project-industry">Food, Spices &amp; FMCG Export — Bangalore, Karnataka</div><div class="project-role-badge">SAP B1 Support Consultant</div><div class="proj-details"><div class="proj-detail">Built automated SQL-driven Crystal Reports for export documentation.</div><div class="proj-detail">Resolved Finance and Sales module issues impacting invoice accuracy.</div></div><div class="proj-result"><div class="proj-result-label">Result</div><div class="proj-result-text">Export document time cut from hours to minutes per shipment · Improved AR accuracy</div></div><div class="proj-tags"><span class="tag">Finance</span><span class="tag">Sales</span><span class="tag">SQL Automation</span><span class="tag">Export</span></div></div></div>
+</section>
+
+<!-- ⑤ KEY SOLUTIONS — Game Changer -->
+<section id="solutions">
+  <div class="section-label">Technical Highlights</div>
+  <h2>Key <em>Solutions</em></h2>
+  <div class="solutions-grid"><div class="solution-card reveal"><div class="solution-number">01</div><div class="solution-type">SQL Automation · Crystal Reports</div><div class="solution-title">Multi-Level Automated Reporting Suite</div><div class="solution-desc">Built 10+ SQL query reports covering Finance, Inventory, and Sales — integrated with Crystal Reports for print-ready layouts.</div><div class="solution-impact">Reduced reporting time by 40% across live environments</div></div><div class="solution-card reveal"><div class="solution-number">02</div><div class="solution-type">Transaction Notification · UDF / UDT</div><div class="solution-title">BP Validation &amp; Master Data Control</div><div class="solution-desc">Designed Transaction Notification rules with UDF/UDT extensions to enforce mandatory field validation at Business Partner creation.</div><div class="solution-impact">Zero invalid BP entries post-implementation</div></div><div class="solution-card reveal"><div class="solution-number">03</div><div class="solution-type">FMS · Stored Procedures</div><div class="solution-title">Dynamic FMS for Sales &amp; Purchase Automation</div><div class="solution-desc">Developed FMS linked to Stored Procedures for auto-populating fields in Sales and Purchase documents.</div><div class="solution-impact">Cut manual entry steps by 50% per transaction</div></div></div>
+</section>
+
+<!-- ⑥ TOOLS & TECHNOLOGIES -->
+<section id="tools">
+  <div class="section-label">Stack</div>
+  <h2>Tools &amp; <em>Technologies</em></h2>
+  <div class="tools-grid"><div class="tool-card reveal"><div class="tool-icon">🔷</div><div class="tool-name">SAP Business One</div><div class="tool-sub">SQL Version · HANA</div></div><div class="tool-card reveal"><div class="tool-icon">📊</div><div class="tool-name">SAP S/4HANA FI</div><div class="tool-sub">In Transition</div></div><div class="tool-card reveal"><div class="tool-icon">🗄️</div><div class="tool-name">SQL Server</div><div class="tool-sub">Queries · Stored Procs</div></div><div class="tool-card reveal"><div class="tool-icon">📑</div><div class="tool-name">Crystal Reports</div><div class="tool-sub">Custom Layouts</div></div><div class="tool-card reveal"><div class="tool-icon">📦</div><div class="tool-name">DTW</div><div class="tool-sub">Data Migration Tool</div></div><div class="tool-card reveal"><div class="tool-icon">📗</div><div class="tool-name">MS Excel</div><div class="tool-sub">Data Prep · Analysis</div></div></div>
+</section>
+
+<!-- ⑦ EDUCATION & CERTIFICATIONS -->
+<section id="education">
+  <div class="section-label">Academic &amp; Certifications</div>
+  <h2>Education &amp; <em>Learning</em></h2>
+  <div class="edu-grid"><div class="edu-card reveal"><div class="edu-icon">🎓</div><div class="edu-degree">B.Com — Banking &amp; Insurance</div><div class="edu-inst">Bharathiyar University, Coimbatore</div><div class="edu-year">Graduated 2024</div></div><div class="edu-card reveal"><div class="edu-icon">📜</div><div class="edu-degree">SAP FICO S/4HANA — Practical Course</div><div class="edu-inst">Udemy · SAP Easy Learning For Beginners</div><div class="edu-year">Completed · Jan 28, 2026 · 39 Hours</div><a class="cert-link" href="https://ude.my/UC-db8cc063-922a-441f-9100-33d902e4ea02" target="_blank">View Certificate</a></div><div class="edu-card reveal"><div class="edu-icon">🚀</div><div class="edu-degree">SAP S/4HANA FICO — Advanced</div><div class="edu-inst">Udemy · In Progress</div><div class="edu-year">SAP FI· Advanced Config</div></div><div class="edu-card reveal"><div class="edu-icon">🎯</div><div class="edu-degree">SAP Certified Application Associate</div><div class="edu-inst">S/4HANA Financial Accounting · Planned</div><div class="edu-year">Target: 2026</div></div></div>
+</section>
+
+<!-- ⑧ CONTACT — Action-Oriented -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center">Let's Connect</div>
+  <h2>Get In <em>Touch</em></h2>
+  <div class="contact-intent">Open to SAP S/4HANA FI roles and implementation opportunities.</div>
+  <p class="contact-sub">If you are looking for a practical, result-focused SAP consultant who solves real problems and delivers measurable outcomes — let us talk.</p>
+  <div class="contact-grid"><a href="mailto:krishnaseelan886@email.com" class="contact-item"><div class="contact-icon">📧</div><div class="contact-label">Email</div><div class="contact-value">krishnaseelan886@email.com</div></a><a href="tel:+917904895759" class="contact-item"><div class="contact-icon">📱</div><div class="contact-label">Phone</div><div class="contact-value">+91 79048 95759</div></a><a href="https://www.linkedin.com/in/krishnaseelan-a-059893237" target="_blank" class="contact-item"><div class="contact-icon">💼</div><div class="contact-label">LinkedIn</div><div class="contact-value">View Profile</div></a><div class="contact-item" style="cursor:default;"><div class="contact-icon">📍</div><div class="contact-label">Location</div><div class="contact-value">Bangalore, India</div></div></div>
+  <div>
+    <a href="Krishnaseelan_SAP_FI_Resume_Updated.pdf" download="" class="resume-btn">
+      ⬇ &nbsp; Download Resume
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 &nbsp;A.Krishnaseelan &nbsp;|&nbsp; SAP Functional Consultant &nbsp;|&nbsp; Bangalore, India
+</footer>
+
+<!-- ── SKILL MODAL ── -->
+<div class="modal-overlay" id="skillModal">
+  <div class="modal-panel" id="modalPanel">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-inner" id="modalContent"></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── SCROLL REVEAL ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  /* ── SKILL DATA ── */
+  const skillData = {
+
+    'finance': {
+      category: 'Functional · SAP Business One',
+      title: 'Finance & <em>Banking</em>',
+      summary: 'The Finance module is the backbone of every SAP B1 implementation. I configure and manage the full financial structure — from initial Chart of Accounts setup to live AP/AR transactions, bank reconciliation, and GST compliance — ensuring the system reflects real-world financial operations accurately.',
+      sections: [
+        {
+          title: 'What I Configure',
+          points: [
+            '<strong>General Ledger (GL)</strong> — Chart of Accounts setup, posting periods, journal entries, and account determination.',
+            '<strong>Accounts Payable (AP)</strong> — Vendor master data, purchase invoices, credit memos, payment runs, and aging reports.',
+            '<strong>Accounts Receivable (AR)</strong> — Customer master data, sales invoices, receipts, dunning, and AR aging analysis.',
+            '<strong>Banking Module</strong> — Bank account setup, incoming and outgoing payment processing, bank statement reconciliation.',
+            '<strong>GST & Tax Configuration</strong> — Tax codes, tax groups, HSN/SAC mapping, and GST-compliant document layouts.',
+          ]
+        },
+        {
+          title: 'Real Work Done',
+          points: [
+            'Configured complete financial structure for manufacturing and trading clients from scratch.',
+            'Performed month-end and year-end closing procedures including period locking and financial reporting.',
+            'Resolved AP/AR reconciliation issues across 3 live client environments.',
+            'Set up multi-currency banking and payment terms for export clients.',
+          ]
+        }
+      ],
+      tags: ['GL', 'AP', 'AR', 'Banking', 'GST', 'Bank Reconciliation', 'Payment Processing', 'Chart of Accounts', 'Tax Config'],
+      metrics: [
+        { num: '3+', label: 'Clients Configured' },
+        { num: '100%', label: 'GST Compliance' },
+        { num: '40%', label: 'Reporting Saved' },
+      ]
+    },
+
+    'sales-purchase': {
+      category: 'Functional · SAP Business One',
+      title: 'Sales & <em>Purchase Cycle</em>',
+      summary: 'I configure and manage the complete Order-to-Cash and Procure-to-Pay cycles in SAP B1 — ensuring seamless flow from quotation to delivery and purchase order to payment, with proper document linking, approval workflows, and inventory integration at every step.',
+      sections: [
+        {
+          title: 'Sales Cycle (Order-to-Cash)',
+          points: [
+            '<strong>Quotation → Sales Order → Delivery → A/R Invoice → Receipt</strong> — full document chain configured and validated.',
+            'Price lists, discount groups, and special pricing per customer or item group.',
+            'Credit limit controls and customer-specific payment terms.',
+            'Sales reports and AR aging integrated with Finance module.',
+          ]
+        },
+        {
+          title: 'Purchase Cycle (Procure-to-Pay)',
+          points: [
+            '<strong>Purchase Order → GRPO → A/P Invoice → Outgoing Payment</strong> — complete procurement flow.',
+            'Vendor evaluation, purchase quotations, and procurement wizard for batch purchasing.',
+            'Landed costs configuration for import purchases.',
+            'Three-way matching between PO, GRPO, and AP Invoice to prevent overpayment.',
+          ]
+        }
+      ],
+      tags: ['Sales A/R', 'Purchase A/P', 'Quotation', 'Sales Order', 'GRPO', 'Delivery', 'Payment Terms', 'Price Lists', 'Procurement Wizard'],
+      metrics: [
+        { num: '4+', label: 'Clients Deployed' },
+        { num: '60%', label: 'Manual Entries Reduced' },
+        { num: '100%', label: 'Doc Chain Integrity' },
+      ]
+    },
+
+    'inventory-production': {
+      category: 'Functional · SAP Business One',
+      title: 'Inventory & <em>Production</em>',
+      summary: 'From raw material to finished goods — I configure inventory management and production workflows that give manufacturing clients real-time visibility into stock levels, production orders, and material requirements, directly integrated with Finance for accurate cost tracking.',
+      sections: [
+        {
+          title: 'Inventory Management',
+          points: [
+            '<strong>Item Master Data</strong> — Item groups, warehouses, bin locations, valuation methods (FIFO, Moving Average).',
+            '<strong>Stock Transactions</strong> — Goods receipts, goods issues, stock transfers, and inventory counting.',
+            '<strong>Multi-Warehouse</strong> — Branch and warehouse-level stock tracking for large manufacturing clients.',
+            'Inventory reorder point setup and minimum stock alerts.',
+          ]
+        },
+        {
+          title: 'Production Module',
+          points: [
+            '<strong>Bill of Materials (BOM)</strong> — Multi-level BOM configuration for complex manufactured products.',
+            '<strong>Production Orders</strong> — Planned, released, and closed production order management with component issue.',
+            '<strong>MRP (Material Requirements Planning)</strong> — Demand-based procurement and production planning recommendations.',
+            'WIP (Work-In-Progress) tracking and production cost analysis.',
+          ]
+        }
+      ],
+      tags: ['Inventory', 'BOM', 'Production Orders', 'MRP', 'Multi-Warehouse', 'FIFO', 'Goods Receipt', 'WIP', 'Stock Transfer'],
+      metrics: [
+        { num: '2+', label: 'Mfg Clients Live' },
+        { num: 'Multi', label: 'Level BOM Built' },
+        { num: 'Real-Time', label: 'Stock Visibility' },
+      ]
+    },
+
+    'crm-admin': {
+      category: 'Functional · SAP Business One',
+      title: 'CRM & <em>Administration</em>',
+      summary: 'Beyond transactions, SAP B1 needs to be properly governed and personalised. I configure CRM for customer relationship tracking, set up system administration for security and approvals, and handle project module setup — creating a structured foundation that scales with the business.',
+      sections: [
+        {
+          title: 'CRM Module',
+          points: [
+            '<strong>Business Partner Management</strong> — Customer and vendor master setup with validation rules to ensure data quality.',
+            '<strong>Activity Tracking</strong> — Calls, meetings, and tasks linked to business partners for relationship management.',
+            '<strong>Opportunities</strong> — Sales pipeline tracking with stage progression and probability weighting.',
+            'Campaign management and service call tracking for post-sales support.',
+          ]
+        },
+        {
+          title: 'Administration & Project',
+          points: [
+            '<strong>User & Role Management</strong> — User authorisations, form permissions, and data ownership controls.',
+            '<strong>Approval Procedures</strong> — Multi-level approval workflows for purchase orders, credit memos, and write-offs.',
+            '<strong>Basic Module Setup</strong> — Company details, posting periods, currencies, and system initialisation.',
+            '<strong>Project Module</strong> — Project creation, budget tracking, and project-linked document management.',
+          ]
+        }
+      ],
+      tags: ['CRM', 'Business Partners', 'Opportunities', 'User Authorisations', 'Approval Procedures', 'Project Module', 'Administration', 'Form Permissions'],
+      metrics: [
+        { num: 'Zero', label: 'Invalid BP Entries' },
+        { num: '100%', label: 'Access Controlled' },
+        { num: 'Multi', label: 'Level Approvals' },
+      ]
+    },
+
+    'sql': {
+      category: 'Technical · SQL & HANA — Reporting Level Expert',
+      title: 'SQL & <em>Query Automation</em>',
+      summary: 'SQL is my primary technical differentiator as a hybrid SAP consultant — and I operate at <strong style="color:var(--gold-light)">Reporting Level Expert</strong>. I write HANA-compatible SQL queries directly against SAP B1 tables to build custom reports, automate data extraction, and create stored procedures that execute complex multi-table business logic — far beyond what standard SAP reports offer.',
+      sections: [
+        {
+          title: 'What I Build with SQL',
+          points: [
+            '<strong>SQL Query Reports</strong> — Custom reports pulling data from OINV, OPCH, OITM, OCRD, and joined tables for Finance, Sales, and Inventory analysis.',
+            '<strong>Stored Procedures</strong> — Automated multi-step logic for validation, calculation, and data transformation on database events.',
+            '<strong>HANA SQL</strong> — SAP HANA-compatible queries using proper column store syntax and views.',
+            'Dynamic parameter-based reports allowing date range, warehouse, and document type filters.',
+          ]
+        },
+        {
+          title: 'Real SQL Work Done',
+          points: [
+            'Built <strong>10+ SQL query reports</strong> for Finance, Inventory, and Sales across 3 client sites.',
+            'Created automated daily inventory valuation report replacing 4-hour manual Excel process.',
+            'Developed multi-level BOM explosion report showing raw material requirements per production order.',
+            'Built AR/AP aging reports with dynamic date buckets integrated directly into SAP B1 dashboard.',
+          ]
+        }
+      ],
+      tags: ['HANA SQL', 'Query Reports', 'Stored Procedures', 'OINV', 'OPCH', 'OITM', 'OCRD', 'Joins', 'Parameters', 'Automation'],
+      metrics: [
+        { num: '10+', label: 'SQL Reports Built' },
+        { num: '40%', label: 'Time Saved' },
+        { num: '3', label: 'Client Sites' },
+      ]
+    },
+
+    'sap-automation': {
+      category: 'Technical · SAP B1 Automation',
+      title: 'SAP <em>Automation</em>',
+      summary: 'SAP B1 has powerful built-in automation tools that most consultants underuse. I leverage Transaction Notifications, Formatted Searches, and User-Defined Fields/Tables to embed business rules, automate workflows, and extend the system to capture data beyond standard SAP — making SAP work exactly the way the business needs it to.',
+      sections: [
+        {
+          title: 'Tools I Use',
+          points: [
+            '<strong>Transaction Notification (TN)</strong> — SQL-based triggers that fire before or after a document is saved. Used to validate mandatory fields, enforce business rules, and block invalid entries.',
+            '<strong>Formatted Search (FMS)</strong> — Dynamic field population using SQL queries. Clicking a field auto-fills related data — reducing manual entry and errors in real time.',
+            '<strong>UDF (User-Defined Fields)</strong> — Custom fields added to any SAP document or master data table to capture business-specific information not in standard SAP.',
+            '<strong>UDT (User-Defined Tables)</strong> — Custom lookup tables that power FMS and store reference data unique to the client\'s business.',
+          ]
+        },
+        {
+          title: 'Real Automation Built',
+          points: [
+            'TN validation preventing Business Partner creation without mandatory tax and address fields — eliminated invalid master data across 3 clients.',
+            'FMS auto-populating cost centre, project code, and payment terms on Sales Orders based on customer group.',
+            'UDF fields on delivery documents to track driver name, vehicle number, and GPS reference for logistics clients.',
+            'UDT-powered FMS for dynamic item pricing based on customer category and quantity band.',
+          ]
+        }
+      ],
+      tags: ['Transaction Notification', 'FMS', 'UDF', 'UDT', 'SQL Triggers', 'Validation', 'Auto-Population', 'Business Rules', 'SAP B1'],
+      metrics: [
+        { num: 'Zero', label: 'Invalid Entries' },
+        { num: '50%', label: 'Entry Steps Cut' },
+        { num: '3+', label: 'Clients Automated' },
+      ]
+    },
+
+    'reporting': {
+      category: 'Technical · Crystal Reports',
+      title: 'Reporting & <em>Crystal Reports</em>',
+      summary: 'Standard SAP B1 print layouts are rigid. I use Crystal Reports to build fully customised, print-ready document layouts and management reports — connecting directly to the SAP B1 database to deliver professional invoices, delivery notes, purchase orders, and analytical reports tailored to each client\'s brand and business logic.',
+      sections: [
+        {
+          title: 'What I Design',
+          points: [
+            '<strong>Document Layouts</strong> — Custom A/R Invoice, Delivery Note, Purchase Order, and Quotation formats with client branding, GST fields, and QR codes.',
+            '<strong>Financial Reports</strong> — P&L summaries, cash flow snapshots, and AR/AP aging analysis with visual formatting for management review.',
+            '<strong>Operational Reports</strong> — Daily stock movement, production output, and dispatch reports automated via SQL sub-reports.',
+            'Multi-currency and multi-language report support for export-facing clients.',
+          ]
+        },
+        {
+          title: 'Real Reports Delivered',
+          points: [
+            'Designed GST-compliant tax invoice layout for an export client reducing document preparation to minutes per shipment.',
+            'Built production daily output report pulling from production orders and BOM completion data.',
+            'Created consolidated multi-branch sales performance report used in weekly management meetings.',
+            'Delivered custom Crystal Reports for Hiromass covering Finance and Production module KPIs.',
+          ]
+        }
+      ],
+      tags: ['Crystal Reports', 'Document Layouts', 'Financial Reports', 'GST Invoice', 'SQL Sub-Reports', 'Custom Layouts', 'Print Design', 'SAP B1'],
+      metrics: [
+        { num: '10+', label: 'Reports Designed' },
+        { num: '100%', label: 'GST Compliant' },
+        { num: 'Minutes', label: 'vs Hours Before' },
+      ]
+    },
+
+    'project-lifecycle': {
+      category: 'Implementation · Pre Go-Live',
+      title: 'Project <em>Lifecycle</em>',
+      summary: 'A successful SAP implementation starts long before any configuration. I lead the critical pre-implementation phase — understanding the client\'s existing processes, documenting the future state, and designing a configuration blueprint that solves real business problems rather than just mirroring the old system in SAP.',
+      sections: [
+        {
+          title: 'What This Covers',
+          points: [
+            '<strong>Requirement Gathering</strong> — Structured workshops with finance, operations, and management to capture AS-IS processes, pain points, and non-negotiables.',
+            '<strong>TO-BE Process Mapping</strong> — Designing the future SAP workflow: how documents will flow, who approves what, and where automation replaces manual steps.',
+            '<strong>Gap Analysis</strong> — Identifying where standard SAP B1 doesn\'t fit and planning configurations, UDFs, or workarounds.',
+            '<strong>Configuration Blueprint</strong> — Documented plan for module setup, number series, approval procedures, and data migration strategy.',
+          ]
+        },
+        {
+          title: 'How I Do It',
+          points: [
+            'One-to-one interviews with department heads to understand real operational needs — not just what\'s on paper.',
+            'Process flow diagrams mapping current vs. future state for Finance, Sales, and Inventory.',
+            'Signed-off scope document before any configuration begins — preventing scope creep during implementation.',
+          ]
+        }
+      ],
+      tags: ['Requirement Gathering', 'TO-BE Mapping', 'Gap Analysis', 'Process Design', 'Scoping', 'Blueprint', 'Workshops', 'Documentation'],
+      metrics: [
+        { num: '4+', label: 'Projects Scoped' },
+        { num: 'Zero', label: 'Scope Creep Issues' },
+        { num: '100%', label: 'Sign-Off Rate' },
+      ]
+    },
+
+    'go-live': {
+      category: 'Implementation · Go-Live',
+      title: 'Go-Live & <em>Data Migration</em>',
+      summary: 'Go-live is the highest-pressure phase of any SAP project. I manage the full transition — from data migration and UAT to cutover and live stabilisation — ensuring the client\'s business continues operating without interruption while the team adapts to the new system.',
+      sections: [
+        {
+          title: 'Data Migration',
+          points: [
+            '<strong>DTW (Data Transfer Workbench)</strong> — Migrating Business Partners, Items, Opening Balances, and historical transactions using DTW templates.',
+            'Data cleansing and validation before migration — removing duplicates, standardising formats, and mapping legacy codes to SAP fields.',
+            'Test migration on sandbox, review errors, correct mapping, then execute on production.',
+          ]
+        },
+        {
+          title: 'UAT & Cutover',
+          points: [
+            '<strong>UAT Preparation</strong> — Creating test scripts covering all key business scenarios: sales flow, purchase flow, payments, production.',
+            'Running UAT sessions with end users, logging issues, fixing configuration, re-testing — until client sign-off is achieved.',
+            '<strong>Cutover Plan</strong> — Sequenced go-live steps: data migration → opening balance entry → first live transactions → parallel run review.',
+            'Post-cutover stabilisation support — available during the first 2–4 weeks live to resolve issues before they impact business.',
+          ]
+        }
+      ],
+      tags: ['DTW', 'Data Migration', 'UAT', 'Cutover', 'Opening Balances', 'Test Scripts', 'Stabilisation', 'Sign-Off', 'Go-Live'],
+      metrics: [
+        { num: '100%', label: 'On-Time Go-Lives' },
+        { num: '2 Wks', label: 'Avg Stabilisation' },
+        { num: '3+', label: 'Successful UATs' },
+      ]
+    },
+
+    'client-delivery': {
+      category: 'Implementation · Post Go-Live',
+      title: 'Client <em>Delivery</em>',
+      summary: 'Go-live is not the finish line — it\'s the beginning. I invest in structured end-user training, clear documentation, and proactive post-go-live support to ensure the client\'s team is genuinely confident using SAP, not just dependent on the consultant for every action.',
+      sections: [
+        {
+          title: 'End-User Training',
+          points: [
+            'Role-based training sessions — Finance team trained on AP/AR/Banking, warehouse team on Inventory, sales team on the full Sales cycle.',
+            'Hands-on practice in a training environment with real business scenarios, not just demos.',
+            'Quick-reference user guides per department covering the 10 most common daily tasks.',
+          ]
+        },
+        {
+          title: 'Documentation & Support',
+          points: [
+            '<strong>Process Documentation</strong> — Step-by-step SOPs for all configured workflows delivered to the client at go-live.',
+            '<strong>Post Go-Live Support</strong> — Scheduled support check-ins during stabilisation period to catch issues early.',
+            'Issue log management — tracking, prioritising, and resolving open items systematically post-launch.',
+            'Knowledge transfer to internal key users so the client is self-sufficient within 4–6 weeks.',
+          ]
+        }
+      ],
+      tags: ['End-User Training', 'Documentation', 'SOPs', 'Post Go-Live', 'Support', 'Knowledge Transfer', 'Issue Resolution'],
+      metrics: [
+        { num: '4+', label: 'Teams Trained' },
+        { num: '4–6 Wks', label: 'To Self-Sufficient' },
+        { num: '100%', label: 'Client Satisfaction' },
+      ]
+    }
+
+  };
+
+  /* ── MODAL LOGIC ── */
+  const overlay  = document.getElementById('skillModal');
+  const content  = document.getElementById('modalContent');
+  const closeBtn = document.getElementById('modalClose');
+
+  function openModal(skillKey) {
+    const d = skillData[skillKey];
+    if (!d) return;
+
+    let html = `
+      <div class="modal-category">${d.category}</div>
+      <div class="modal-title">${d.title}</div>
+      <div class="modal-summary">${d.summary}</div>
+    `;
+
+    d.sections.forEach(sec => {
+      html += `<div class="modal-section-title">${sec.title}</div>`;
+      html += `<ul class="modal-points">`;
+      sec.points.forEach(p => { html += `<li>${p}</li>`; });
+      html += `</ul>`;
+    });
+
+    if (d.metrics && d.metrics.length) {
+      html += `<div class="modal-metric-row">`;
+      d.metrics.forEach(m => {
+        html += `<div class="modal-metric">
+          <div class="modal-metric-num">${m.num}</div>
+          <div class="modal-metric-label">${m.label}</div>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (d.tags && d.tags.length) {
+      html += `<div class="modal-section-title">Tags</div><div class="modal-tags">`;
+      d.tags.forEach(t => { html += `<span class="modal-tag">${t}</span>`; });
+      html += `</div>`;
+    }
+
+    content.innerHTML = html;
+    document.getElementById('modalPanel').scrollTop = 0;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.skill-item[data-skill]').forEach(el => {
+    el.addEventListener('click', () => openModal(el.dataset.skill));
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+<!-- ADMIN PANEL PLACEHOLDER - will be injected by script below -->
+<button id="adminFab" style="display: none; position: fixed; bottom: 2rem; right: 2rem; z-index: 500; width: 48px; height: 48px; border-radius: 50%; background: rgb(201, 168, 76); color: rgb(10, 10, 15); border: none; font-size: 1.3rem; cursor: pointer; box-shadow: rgba(201, 168, 76, 0.4) 0px 4px 20px; align-items: center; justify-content: center;" title="Admin Panel">⚙</button>
+
+<div id="adminToast" style="position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: rgb(17, 17, 26); border: 1px solid rgba(201, 168, 76, 0.35); color: rgb(232, 224, 212); padding: 0.8rem 2rem; font-size: 0.82rem; z-index: 3000; opacity: 1; transition: opacity 0.3s; pointer-events: none; font-family: &quot;DM Sans&quot;, sans-serif;">Publishing to GitHub...</div>
+
+<script>
+/* Check #admin hash to show FAB */
+function checkAdminHash() {
+  document.getElementById('adminFab').style.display = window.location.hash === '#admin' ? 'flex' : 'none';
+}
+window.addEventListener('hashchange', checkAdminHash);
+checkAdminHash();
+
+function showToast(msg, type) {
+  const t = document.getElementById('adminToast');
+  t.textContent = msg;
+  t.style.borderColor = type==='success' ? '#6ddfaa' : type==='error' ? '#e07070' : 'rgba(201,168,76,0.35)';
+  t.style.color = type==='success' ? '#6ddfaa' : type==='error' ? '#e07070' : '#e8e0d4';
+  t.style.opacity = '1';
+  setTimeout(() => { t.style.opacity = '0'; }, 3200);
+}
+
+const ADMIN_KEY = 'ka_admin_pwd';
+const DATA_KEY  = 'ka_admin_data';
+const GH_KEY    = 'ka_github';
+const DEFAULT_PWD = 'Krish@2026';
+function getStoredPwd() { return localStorage.getItem(ADMIN_KEY) || DEFAULT_PWD; }
+
+document.getElementById('adminFab').addEventListener('click', () => {
+  const pwd = prompt('Enter admin password:');
+  if (pwd === null) return;
+  if (pwd === getStoredPwd()) {
+    openAdminPanel();
+  } else {
+    alert('Incorrect password.');
+  }
+});
+
+/* ═══ DEFAULT DATA ═══ */
+const defaultData = {
+  skills: [
+    { cat:'Functional', name:'Finance', tags:'GL, AP, AR, Banking, GST, Bank Recon', badge:'' },
+    { cat:'Functional', name:'Sales & Purchase Cycle', tags:'Sales A/R, Purchase A/P, Quotation, GRPO', badge:'' },
+    { cat:'Functional', name:'Inventory & Production', tags:'Inventory, Production Orders, BOM, MRP', badge:'' },
+    { cat:'Functional', name:'CRM & Administration', tags:'CRM, Business Partners, Administration, Project Module', badge:'' },
+    { cat:'Technical', name:'SQL', tags:'Query Reports, Stored Procedures, HANA SQL', badge:'Reporting Level Expert' },
+    { cat:'Technical', name:'SAP Automation', tags:'Transaction Notification, FMS, UDF, UDT', badge:'' },
+    { cat:'Technical', name:'Reporting', tags:'Crystal Reports, Financial Reports, Custom Layouts', badge:'' },
+    { cat:'Implementation', name:'Project Lifecycle', tags:'Requirement Gathering, TO-BE Mapping, Process Design', badge:'' },
+    { cat:'Implementation', name:'Go-Live', tags:'UAT, Data Migration, Go-Live Support, Stabilisation', badge:'' },
+    { cat:'Implementation', name:'Client Delivery', tags:'End-User Training, Documentation, Post Go-Live Support', badge:'' },
+  ],
+  par: [
+    { problem:'Clients spent excessive hours generating financial and inventory reports manually every month.', action:'Developed 10+ SQL Query Reports and Stored Procedures automating data extraction and formatting.', result:'Reduced manual reporting time by 40% — freeing finance teams for higher-value work.' },
+    { problem:'Frequent invalid Business Partner entries in SAP causing downstream errors in finance and sales.', action:'Implemented Transaction Notification with validation logic and built UDF/UDT fields to enforce data standards at point of entry.', result:'Eliminated invalid master data entries — zero recurrence post-implementation across 3 client sites.' },
+    { problem:'Manufacturing client had no structured ERP — manual spreadsheets causing reconciliation delays.', action:'Delivered full end-to-end SAP B1 implementation — configuration, data migration, UAT, and go-live.', result:'Went live on schedule, stabilised in 2 weeks, reduced manual entries by 60%.' },
+    { problem:'Export client required complex multi-format documentation for every shipment — done manually.', action:'Built automated SQL-driven Crystal Reports for export documents integrated with SAP B1 Sales data.', result:'Cut export documentation time from hours to minutes per shipment.' },
+  ],
+  projects: [
+    { name:'Hiromass Pvt. Ltd.', industry:'Manufacturing Industry — Bangalore', role:'SAP B1 Support Consultant', type:'Ongoing Support', status:'live', work:'Resolved 20+ Finance and Production module issues, maintaining zero downtime.\nOptimised MRP configuration to align production planning with real demand cycles.\nCustomised Crystal Reports for management-level production and finance visibility.', result:'Stable system operations · Improved report accuracy · Faster production decisions', tags:'Finance, Production, MRP, Crystal Reports' },
+    { name:'Machfox Hydraulics & Lubrication Systems Pvt. Ltd.', industry:'Industrial Hydraulics & Lubrication Manufacturing', role:'SAP B1 Functional Consultant', type:'Full Implementation', status:'completed', work:'Implemented full ERP lifecycle — Finance, Inventory, Sales, Purchase, and Production modules.\nMigrated master data using DTW.\nConducted UAT and delivered structured training.', result:'Delivered go-live on schedule · Reduced manual entries by 60% · Stabilised within 2 weeks', tags:'Finance, Production, Inventory, DTW, Go-Live' },
+    { name:'Alfa PEB Limited', industry:'Pre-Engineered Buildings & Sandwich Panel Manufacturing', role:'SAP B1 Support Consultant', type:'Support Project', status:'completed', work:'Resolved Finance and Inventory module discrepancies.\nSupported multi-location inventory tracking.', result:'Zero data integrity issues · Consistent financial closing on schedule', tags:'Finance, Inventory, Manufacturing' },
+    { name:'Jay Keshav Exports Pvt. Ltd.', industry:'Food, Spices & FMCG Export — Bangalore, Karnataka', role:'SAP B1 Support Consultant', type:'Support Project', status:'completed', work:'Built automated SQL-driven Crystal Reports for export documentation.\nResolved Finance and Sales module issues impacting invoice accuracy.', result:'Export document time cut from hours to minutes per shipment · Improved AR accuracy', tags:'Finance, Sales, SQL Automation, Export' },
+  ],
+  solutions: [
+    { num:'01', type:'SQL Automation · Crystal Reports', title:'Multi-Level Automated Reporting Suite', desc:'Built 10+ SQL query reports covering Finance, Inventory, and Sales — integrated with Crystal Reports for print-ready layouts.', impact:'Reduced reporting time by 40% across live environments' },
+    { num:'02', type:'Transaction Notification · UDF / UDT', title:'BP Validation & Master Data Control', desc:'Designed Transaction Notification rules with UDF/UDT extensions to enforce mandatory field validation at Business Partner creation.', impact:'Zero invalid BP entries post-implementation' },
+    { num:'03', type:'FMS · Stored Procedures', title:'Dynamic FMS for Sales & Purchase Automation', desc:'Developed FMS linked to Stored Procedures for auto-populating fields in Sales and Purchase documents.', impact:'Cut manual entry steps by 50% per transaction' },
+  ],
+  tools: [
+    { icon:'🔷', name:'SAP Business One', sub:'SQL Version · HANA' },
+    { icon:'📊', name:'SAP S/4HANA FI', sub:'In Transition' },
+    { icon:'🗄️', name:'SQL Server', sub:'Queries · Stored Procs' },
+    { icon:'📑', name:'Crystal Reports', sub:'Custom Layouts' },
+    { icon:'📦', name:'DTW', sub:'Data Migration Tool' },
+    { icon:'📗', name:'MS Excel', sub:'Data Prep · Analysis' },
+  ],
+  edu: [
+    { icon:'🎓', degree:'B.Com — Banking & Insurance', inst:'Bharathiyar University, Coimbatore', year:'Graduated 2024', certLink:'', progress:'' },
+    { icon:'📜', degree:'SAP FICO S/4HANA — Practical Course', inst:'Udemy · SAP Easy Learning For Beginners', year:'Completed · Jan 28, 2026 · 39 Hours', certLink:'https://ude.my/UC-db8cc063-922a-441f-9100-33d902e4ea02', progress:'' },
+    { icon:'🚀', degree:'SAP S/4HANA FICO — Advanced', inst:'Udemy · In Progress', year:'CO · Profit Centre · Advanced Config', certLink:'', progress:'' },
+    { icon:'🎯', degree:'SAP Certified Application Associate', inst:'S/4HANA Financial Accounting · Planned', year:'Target: 2026', certLink:'', progress:'' },
+  ]
+};
+
+function getData() { try { return JSON.parse(localStorage.getItem(DATA_KEY)) || defaultData; } catch(e) { return defaultData; } }
+function saveData(d) { localStorage.setItem(DATA_KEY, JSON.stringify(d)); }
+
+/* ═══ BUILD ADMIN PANEL HTML ═══ */
+function buildAdminHTML() {
+  return `
+  <style>
+  .ap-overlay{position:fixed;inset:0;z-index:2000;background:rgba(5,5,10,0.97);backdrop-filter:blur(8px);overflow-y:auto;font-family:'DM Sans',sans-serif;color:#e8e0d4;}
+  .ap-overlay::-webkit-scrollbar{width:4px;}.ap-overlay::-webkit-scrollbar-thumb{background:#c9a84c;}
+  .ap-header{position:sticky;top:0;z-index:10;background:rgba(10,10,15,0.98);border-bottom:1px solid rgba(201,168,76,0.2);padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .ap-header h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#c9a84c;margin:0;}
+  .ap-hbtns{display:flex;gap:0.7rem;}
+  .apb{border:none;padding:0.6rem 1.3rem;font-size:0.74rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+  .apb.gold{background:#c9a84c;color:#0a0a0f;}.apb.gold:hover{background:#e8c97a;}
+  .apb.out{background:transparent;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);}.apb.out:hover{border-color:#c9a84c;}
+  .apb.grey{background:transparent;color:#7a7264;border:1px solid rgba(138,128,112,0.25);}.apb.grey:hover{border-color:#7a7264;color:#e8e0d4;}
+  .ap-body{padding:2rem 2.5rem;display:grid;grid-template-columns:200px 1fr;gap:2rem;}
+  .ap-nav{list-style:none;padding:0;margin:0;position:sticky;top:80px;align-self:start;}
+  .ap-nav li{padding:0.6rem 1rem;font-size:0.77rem;letter-spacing:0.06em;color:#7a7264;cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+  .ap-nav li:hover{color:#e8e0d4;background:rgba(201,168,76,0.04);}
+  .ap-nav li.on{color:#c9a84c;border-left-color:#c9a84c;background:rgba(201,168,76,0.07);}
+  .ap-sec{display:none;}.ap-sec.on{display:block;}
+  .ap-stitle{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#e8e0d4;margin-bottom:0.3rem;}
+  .ap-ssub{font-size:0.79rem;color:#7a7264;margin-bottom:1.6rem;}
+  .fl{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;display:block;}
+  .fi,.ft,.fs{width:100%;background:#181826;border:1px solid rgba(201,168,76,0.15);color:#e8e0d4;padding:0.65rem 0.85rem;font-size:0.84rem;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.3s;}
+  .fi:focus,.ft:focus,.fs:focus{border-color:#c9a84c;}
+  .ft{resize:vertical;min-height:72px;}
+  .fg{margin-bottom:1.2rem;}
+  .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  .acard{background:#181826;border:1px solid rgba(201,168,76,0.12);padding:1.3rem;margin-bottom:1rem;}
+  .acard-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .acard-ttl{font-size:0.84rem;font-weight:500;color:#c9a84c;}
+  .ibb{background:transparent;border:1px solid rgba(138,128,112,0.2);color:#7a7264;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.72rem;transition:all 0.2s;}
+  .ibb:hover{border-color:#e07070;color:#e07070;}
+  .add-btn{width:100%;background:transparent;border:1px dashed rgba(201,168,76,0.25);color:#7a7264;padding:0.8rem;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;}
+  .add-btn:hover{border-color:#c9a84c;color:#c9a84c;}
+  .adiv{height:1px;background:rgba(201,168,76,0.1);margin:1.4rem 0;}
+  .sr{display:flex;gap:0.5rem;margin-top:0.4rem;}
+  .so{font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;cursor:pointer;border:1px solid rgba(138,128,112,0.25);color:#7a7264;transition:all 0.2s;}
+  .so.live{border-color:#6ddfaa;color:#6ddfaa;background:rgba(109,223,170,0.07);}
+  .so.done{border-color:#7a7264;color:#e8e0d4;background:rgba(138,128,112,0.07);}
+  .gh-info{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);padding:1.1rem 1.3rem;margin-bottom:1.4rem;font-size:0.82rem;color:#b0a898;line-height:1.7;}
+  .gh-info strong{color:#c9a84c;}.gh-info ol{padding-left:1.1rem;margin-top:0.4rem;}.gh-info li{margin-bottom:0.25rem;}
+  .gh-info code{background:#181826;border:1px solid rgba(201,168,76,0.15);padding:0.1rem 0.4rem;font-size:0.78rem;color:#e8c97a;}
+  .ghst{font-size:0.77rem;margin-top:0.5rem;}
+  .ghst.ok{color:#6ddfaa;}.ghst.err{color:#e07070;}
+  @media(max-width:768px){.ap-body{grid-template-columns:1fr;}.ap-nav{position:relative;top:0;display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1rem;}.ap-nav li{border-left:none;border-bottom:2px solid transparent;padding:0.4rem 0.7rem;}}
+  </style>
+  <div class="ap-overlay" id="apOverlay">
+    <div class="ap-header">
+      <h2>⚙ Portfolio Admin</h2>
+      <div class="ap-hbtns">
+        <button class="apb gold" id="apPublish">⬆ Publish to GitHub</button>
+        <button class="apb out" id="apExport">⬇ Export HTML</button>
+        <button class="apb grey" onclick="closeAdminPanel()">✕ Close</button>
+      </div>
+    </div>
+    <div class="ap-body">
+      <ul class="ap-nav" id="apNav">
+        <li class="on" data-s="github">⚙ GitHub</li>
+        <li data-s="hero">① Hero</li>
+        <li data-s="skills">② Skills</li>
+        <li data-s="exp">③ Experience</li>
+        <li data-s="projects">④ Projects</li>
+        <li data-s="solutions">⑤ Solutions</li>
+        <li data-s="tools">⑥ Tools</li>
+        <li data-s="edu">⑦ Education</li>
+        <li data-s="contact">⑧ Contact</li>
+        <li data-s="pwd">🔒 Password</li>
+      </ul>
+      <main>
+
+        <!-- GITHUB -->
+        <div class="ap-sec on" id="aps-github">
+          <div class="ap-stitle">GitHub Setup</div>
+          <div class="ap-ssub">Connect once — publish any time from this panel.</div>
+          <div class="gh-info">
+            <strong>One-time GitHub Pages setup:</strong>
+            <ol>
+              <li>Create account at <strong>github.com</strong></li>
+              <li>New repository → name it <code>yourusername.github.io</code></li>
+              <li>Upload your HTML file, rename to <code>index.html</code></li>
+              <li>Settings → Pages → Source: main branch → Save</li>
+              <li>Settings → Developer Settings → Personal Access Tokens → Generate with <code>repo</code> scope</li>
+              <li>Paste the token below — it's saved only in your browser.</li>
+            </ol>
+          </div>
+          <div class="fr">
+            <div class="fg"><label class="fl">GitHub Username</label><input class="fi" id="gh-user" placeholder="krishnaseelan-a"/></div>
+            <div class="fg"><label class="fl">Repository Name</label><input class="fi" id="gh-repo" placeholder="krishnaseelan-a.github.io"/></div>
+          </div>
+          <div class="fg"><label class="fl">Personal Access Token</label><input class="fi" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/></div>
+          <div class="fg"><label class="fl">File name in repo</label><input class="fi" id="gh-file" value="index.html"/></div>
+          <button class="apb out" id="ghTest" style="margin-right:0.5rem;">Test Connection</button>
+          <button class="apb gold" onclick="apSaveGh()" style="margin-top:0.4rem;">Save Settings</button>
+          <div class="ghst" id="ghSt"></div>
+        </div>
+
+        <!-- HERO -->
+        <div class="ap-sec" id="aps-hero">
+          <div class="ap-stitle">Hero Section</div>
+          <div class="ap-ssub">Your first impression — keep it factual and sharp.</div>
+          <div class="fg"><label class="fl">Badge Text</label><input class="fi" id="h-badge" value="📍 Bangalore, India · Open to S/4HANA FI Roles"/></div>
+          <div class="fr"><div class="fg"><label class="fl">First Name</label><input class="fi" id="h-fn" value="A.Krishnaseelan"/></div><div class="fg"><label class="fl">Last Name / Initial</label><input class="fi" id="h-ln" value=""/></div></div>
+          <div class="fg"><label class="fl">Title</label><input class="fi" id="h-title" value="SAP Functional Consultant · B1 & S/4HANA FI"/></div>
+          <div class="fg"><label class="fl">Tagline 1</label><input class="fi" id="h-t1" value="SAP Business One Functional Consultant"/></div>
+          <div class="fg"><label class="fl">Tagline 2</label><input class="fi" id="h-t2" value="Transitioning to SAP S/4HANA FI"/></div>
+          <div class="fg"><label class="fl">Tagline 3</label><input class="fi" id="h-t3" value="Finance · Production · SQL Automation Specialist"/></div>
+          <div class="fg"><label class="fl">Bio Paragraph</label><textarea class="ft" id="h-bio">SAP Business One Consultant with hands-on implementation experience, specialising in Finance, Production, and SQL-driven automation. Delivered 4+ client projects across manufacturing and trading industries. Currently transitioning into SAP S/4HANA FI.</textarea></div>
+          <div class="adiv"></div>
+          <div class="fr3">
+            <div class="fg"><label class="fl">Stat 1</label><input class="fi" id="s1n" value="1+"/><input class="fi" id="s1l" value="Year Consulting" style="margin-top:0.4rem;"/></div>
+            <div class="fg"><label class="fl">Stat 2</label><input class="fi" id="s2n" value="4+"/><input class="fi" id="s2l" value="Client Projects" style="margin-top:0.4rem;"/></div>
+            <div class="fg"><label class="fl">Stat 3</label><input class="fi" id="s3n" value="10+"/><input class="fi" id="s3l" value="SQL Reports Built" style="margin-top:0.4rem;"/></div>
+          </div>
+          <div class="fg"><label class="fl">Stat 4</label><div class="fr"><input class="fi" id="s4n" value="40%"/><input class="fi" id="s4l" value="Reporting Time Saved"/></div></div>
+        </div>
+
+
+        <!-- SKILLS -->
+        <div class="ap-sec" id="aps-skills">
+          <div class="ap-stitle">Skills &amp; Capabilities</div>
+          <div class="ap-ssub">Add, edit, or remove skill items. Each belongs to a category: Functional, Technical, or Implementation. The name and tags are shown on the portfolio card.</div>
+          <div id="skill-list"></div>
+          <button class="add-btn" onclick="addSkillItem()">+ Add Skill</button>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="ap-sec" id="aps-exp">
+          <div class="ap-stitle">Work Experience</div>
+          <div class="ap-ssub">Problem → Action → Result format.</div>
+          <div class="fg"><label class="fl">Period</label><input class="fi" id="ep" value="Dec 2024 — Present"/></div>
+          <div class="fg"><label class="fl">Role</label><input class="fi" id="er" value="SAP Business One Functional Consultant"/></div>
+          <div class="fg"><label class="fl">Company</label><input class="fi" id="ec" value="Zyple Software Solutions Pvt. Ltd. — Bangalore, India"/></div>
+          <div class="adiv"></div>
+          <div style="font-size:0.68rem;color:#c9a84c;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">PAR Blocks</div>
+          <div id="par-list"></div>
+          <button class="add-btn" onclick="addPar()">+ Add PAR Block</button>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="ap-sec" id="aps-projects">
+          <div class="ap-stitle">Project Portfolio</div>
+          <div class="ap-ssub">Add, edit, or remove client projects.</div>
+          <div id="proj-list"></div>
+          <button class="add-btn" onclick="addProj()">+ Add Project</button>
+        </div>
+
+        <!-- SOLUTIONS -->
+        <div class="ap-sec" id="aps-solutions">
+          <div class="ap-stitle">Key Solutions</div>
+          <div class="ap-ssub">Your top 3 technical highlights.</div>
+          <div id="sol-list"></div>
+          <button class="add-btn" onclick="addSol()">+ Add Solution</button>
+        </div>
+
+        <!-- TOOLS -->
+        <div class="ap-sec" id="aps-tools">
+          <div class="ap-stitle">Tools & Technologies</div>
+          <div class="ap-ssub">Manage your tech stack.</div>
+          <div id="tool-list"></div>
+          <button class="add-btn" onclick="addTool()">+ Add Tool</button>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="ap-sec" id="aps-edu">
+          <div class="ap-stitle">Education & Certifications</div>
+          <div class="ap-ssub">Academic and certification entries.</div>
+          <div id="edu-list"></div>
+          <button class="add-btn" onclick="addEdu()">+ Add Entry</button>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="ap-sec" id="aps-contact">
+          <div class="ap-stitle">Contact</div>
+          <div class="ap-ssub">Your public contact details.</div>
+          <div class="fr"><div class="fg"><label class="fl">Email</label><input class="fi" id="ct-e" value="krishnaseelan886@email.com"/></div><div class="fg"><label class="fl">Phone</label><input class="fi" id="ct-p" value="+91 79048 95759"/></div></div>
+          <div class="fg"><label class="fl">LinkedIn URL</label><input class="fi" id="ct-li" value="https://www.linkedin.com/in/krishnaseelan-a-059893237"/></div>
+          <div class="fg"><label class="fl">Location</label><input class="fi" id="ct-loc" value="Bangalore, India"/></div>
+          <div class="fg"><label class="fl">Tagline (italic gold)</label><input class="fi" id="ct-tag" value="Open to SAP S/4HANA FI roles and implementation opportunities."/></div>
+          <div class="fg"><label class="fl">Sub-text</label><textarea class="ft" id="ct-sub">If you are looking for a practical, result-focused SAP consultant who solves real problems and delivers measurable outcomes — let us talk.</textarea></div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="ap-sec" id="aps-pwd">
+          <div class="ap-stitle">Change Password</div>
+          <div class="ap-ssub">Default password: Krish@2026</div>
+          <div class="fg"><label class="fl">Current Password</label><input class="fi" type="password" id="pc"/></div>
+          <div class="fg"><label class="fl">New Password</label><input class="fi" type="password" id="pn"/></div>
+          <div class="fg"><label class="fl">Confirm New</label><input class="fi" type="password" id="pcf"/></div>
+          <button class="apb gold" onclick="chgPwd()">Update Password</button>
+          <div id="pwd-msg" style="font-size:0.78rem;margin-top:0.6rem;"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>`;
+}
+
+function openAdminPanel() {
+  const existing = document.getElementById('apOverlay');
+  if (existing) existing.remove();
+  document.body.insertAdjacentHTML('beforeend', buildAdminHTML());
+  document.body.style.overflow = 'hidden';
+
+  // Load GitHub settings
+  const gh = JSON.parse(localStorage.getItem(GH_KEY)||'{}');
+  if(gh.user) document.getElementById('gh-user').value=gh.user;
+  if(gh.repo) document.getElementById('gh-repo').value=gh.repo;
+  if(gh.token) document.getElementById('gh-token').value=gh.token;
+  if(gh.file) document.getElementById('gh-file').value=gh.file;
+
+  // Render data sections
+  renderPar(); renderProj(); renderSol(); renderToolList(); renderEduList(); renderSkills();
+
+  // Nav
+  document.querySelectorAll('.ap-nav li').forEach(li => {
+    li.addEventListener('click', () => {
+      document.querySelectorAll('.ap-nav li').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.ap-sec').forEach(x=>x.classList.remove('on'));
+      li.classList.add('on');
+      document.getElementById('aps-'+li.dataset.s).classList.add('on');
+    });
+  });
+
+  // GitHub test
+  document.getElementById('ghTest').addEventListener('click', async () => {
+    const st=document.getElementById('ghSt');
+    const tok=document.getElementById('gh-token').value;
+    if(!tok){st.className='ghst err';st.textContent='Enter token first.';return;}
+    st.className='ghst';st.textContent='Testing...';
+    try{
+      const r=await fetch('https://api.github.com/user',{headers:{Authorization:'token '+tok}});
+      if(r.ok){const u=await r.json();st.className='ghst ok';st.textContent='✓ Connected as '+u.login;}
+      else{st.className='ghst err';st.textContent='✗ Invalid token.';}
+    }catch(e){st.className='ghst err';st.textContent='✗ Network error.';}
+  });
+
+  document.getElementById('apExport').addEventListener('click', doExport);
+  document.getElementById('apPublish').addEventListener('click', doPublish);
+}
+
+function closeAdminPanel() {
+  const el=document.getElementById('apOverlay');
+  if(el) el.remove();
+  document.body.style.overflow='';
+}
+
+function apSaveGh() {
+  localStorage.setItem(GH_KEY, JSON.stringify({
+    user:document.getElementById('gh-user').value.trim(),
+    repo:document.getElementById('gh-repo').value.trim(),
+    token:document.getElementById('gh-token').value.trim(),
+    file:document.getElementById('gh-file').value.trim()||'index.html'
+  }));
+  showToast('GitHub settings saved.','success');
+}
+
+/* PAR */
+function renderPar() {
+  const d=getData();
+  document.getElementById('par-list').innerHTML=d.par.map((p,i)=>`
+    <div class="acard">
+      <div class="acard-hd"><div class="acard-ttl">PAR Block ${i+1}</div><button class="ibb" onclick="rmPar(${i})">✕</button></div>
+      <div class="fg"><label class="fl">Problem</label><textarea class="ft" style="min-height:52px" onchange="upPar(${i},'problem',this.value)">${p.problem}</textarea></div>
+      <div class="fg"><label class="fl">Action</label><textarea class="ft" style="min-height:52px" onchange="upPar(${i},'action',this.value)">${p.action}</textarea></div>
+      <div class="fg"><label class="fl">Result</label><textarea class="ft" style="min-height:52px" onchange="upPar(${i},'result',this.value)">${p.result}</textarea></div>
+    </div>`).join('');
+}
+function upPar(i,k,v){const d=getData();d.par[i][k]=v;saveData(d);}
+function rmPar(i){const d=getData();d.par.splice(i,1);saveData(d);renderPar();}
+function addPar(){const d=getData();d.par.push({problem:'Describe problem...',action:'Describe action...',result:'Describe result...'});saveData(d);renderPar();}
+
+/* PROJECTS */
+function renderProj() {
+  const d=getData();
+  document.getElementById('proj-list').innerHTML=d.projects.map((p,i)=>`
+    <div class="acard">
+      <div class="acard-hd"><div class="acard-ttl">${p.name}</div><button class="ibb" onclick="rmProj(${i})">✕</button></div>
+      <div class="fr"><div class="fg"><label class="fl">Client Name</label><input class="fi" value="${p.name}" onchange="upProj(${i},'name',this.value)"/></div><div class="fg"><label class="fl">Type</label><input class="fi" value="${p.type}" onchange="upProj(${i},'type',this.value)"/></div></div>
+      <div class="fg"><label class="fl">Industry</label><input class="fi" value="${p.industry}" onchange="upProj(${i},'industry',this.value)"/></div>
+      <div class="fg"><label class="fl">Your Role</label><input class="fi" value="${p.role}" onchange="upProj(${i},'role',this.value)"/></div>
+      <div class="fg"><label class="fl">Status</label><div class="sr">
+        <span class="so ${p.status==='live'?'live':''}" onclick="setStatus(${i},'live',this)">🟢 Live</span>
+        <span class="so ${p.status==='completed'?'done':''}" onclick="setStatus(${i},'completed',this)">✓ Completed</span>
+      </div></div>
+      <div class="fg"><label class="fl">Key Work (one per line)</label><textarea class="ft" onchange="upProj(${i},'work',this.value)">${p.work.replace(/\n/g,'\n')}</textarea></div>
+      <div class="fg"><label class="fl">Result</label><input class="fi" value="${p.result}" onchange="upProj(${i},'result',this.value)"/></div>
+      <div class="fg"><label class="fl">Tags (comma separated)</label><input class="fi" value="${p.tags}" onchange="upProj(${i},'tags',this.value)"/></div>
+    </div>`).join('');
+}
+function upProj(i,k,v){const d=getData();d.projects[i][k]=v;saveData(d);}
+function setStatus(i,s,el){const d=getData();d.projects[i].status=s;saveData(d);el.parentElement.querySelectorAll('.so').forEach(x=>x.className='so');el.className='so '+(s==='live'?'live':'done');}
+function rmProj(i){const d=getData();d.projects.splice(i,1);saveData(d);renderProj();}
+function addProj(){const d=getData();d.projects.push({name:'New Client',industry:'Industry',role:'SAP B1 Consultant',type:'Support Project',status:'completed',work:'Key work done...',result:'Result achieved...',tags:'Finance, Support'});saveData(d);renderProj();}
+
+/* SOLUTIONS */
+function renderSol(){
+  const d=getData();
+  document.getElementById('sol-list').innerHTML=d.solutions.map((s,i)=>`
+    <div class="acard">
+      <div class="acard-hd"><div class="acard-ttl">${s.title}</div><button class="ibb" onclick="rmSol(${i})">✕</button></div>
+      <div class="fr"><div class="fg"><label class="fl">Number</label><input class="fi" value="${s.num}" onchange="upSol(${i},'num',this.value)"/></div><div class="fg"><label class="fl">Type</label><input class="fi" value="${s.type}" onchange="upSol(${i},'type',this.value)"/></div></div>
+      <div class="fg"><label class="fl">Title</label><input class="fi" value="${s.title}" onchange="upSol(${i},'title',this.value)"/></div>
+      <div class="fg"><label class="fl">Description</label><textarea class="ft" onchange="upSol(${i},'desc',this.value)">${s.desc}</textarea></div>
+      <div class="fg"><label class="fl">Impact</label><input class="fi" value="${s.impact}" onchange="upSol(${i},'impact',this.value)"/></div>
+    </div>`).join('');
+}
+function upSol(i,k,v){const d=getData();d.solutions[i][k]=v;saveData(d);}
+function rmSol(i){const d=getData();d.solutions.splice(i,1);saveData(d);renderSol();}
+function addSol(){const d=getData();d.solutions.push({num:'0'+(d.solutions.length+1),type:'Tool · Method',title:'New Solution',desc:'Description...',impact:'Impact...'});saveData(d);renderSol();}
+
+/* TOOLS */
+function renderToolList(){
+  const d=getData();
+  document.getElementById('tool-list').innerHTML=d.tools.map((t,i)=>`
+    <div class="acard">
+      <div class="acard-hd"><div class="acard-ttl">${t.name}</div><button class="ibb" onclick="rmTool(${i})">✕</button></div>
+      <div class="fr"><div class="fg"><label class="fl">Icon</label><input class="fi" value="${t.icon}" onchange="upTool(${i},'icon',this.value)"/></div><div class="fg"><label class="fl">Name</label><input class="fi" value="${t.name}" onchange="upTool(${i},'name',this.value)"/></div></div>
+      <div class="fg"><label class="fl">Sub Label</label><input class="fi" value="${t.sub}" onchange="upTool(${i},'sub',this.value)"/></div>
+    </div>`).join('');
+}
+function upTool(i,k,v){const d=getData();d.tools[i][k]=v;saveData(d);}
+function rmTool(i){const d=getData();d.tools.splice(i,1);saveData(d);renderToolList();}
+function addTool(){const d=getData();d.tools.push({icon:'🔧',name:'New Tool',sub:'Description'});saveData(d);renderToolList();}
+
+/* EDUCATION */
+function renderEduList(){
+  const d=getData();
+  document.getElementById('edu-list').innerHTML=d.edu.map((e,i)=>`
+    <div class="acard">
+      <div class="acard-hd"><div class="acard-ttl">${e.degree}</div><button class="ibb" onclick="rmEdu(${i})">✕</button></div>
+      <div class="fr"><div class="fg"><label class="fl">Icon</label><input class="fi" value="${e.icon}" onchange="upEdu(${i},'icon',this.value)"/></div><div class="fg"><label class="fl">Degree / Title</label><input class="fi" value="${e.degree}" onchange="upEdu(${i},'degree',this.value)"/></div></div>
+      <div class="fg"><label class="fl">Institution</label><input class="fi" value="${e.inst}" onchange="upEdu(${i},'inst',this.value)"/></div>
+      <div class="fg"><label class="fl">Year / Status</label><input class="fi" value="${e.year}" onchange="upEdu(${i},'year',this.value)"/></div>
+      <div class="fg"><label class="fl">Certificate Link (blank if none)</label><input class="fi" value="${e.certLink}" onchange="upEdu(${i},'certLink',this.value)"/></div>
+      <div class="fg"><label class="fl">Progress % (blank if none)</label><input class="fi" type="number" min="0" max="100" value="${e.progress}" onchange="upEdu(${i},'progress',this.value)"/></div>
+    </div>`).join('');
+}
+function upEdu(i,k,v){const d=getData();d.edu[i][k]=v;saveData(d);}
+function rmEdu(i){const d=getData();d.edu.splice(i,1);saveData(d);renderEduList();}
+function addEdu(){const d=getData();d.edu.push({icon:'📚',degree:'New Entry',inst:'Provider',year:'Year',certLink:'',progress:''});saveData(d);renderEduList();}
+/* SKILLS */
+function renderSkills(){
+  const d=getData();
+  const cats=['Functional','Technical','Implementation'];
+  let out='';
+  cats.forEach(cat=>{
+    const items=d.skills.filter(s=>s.cat===cat);
+    if(!items.length) return;
+    out+='<div style="margin-bottom:0.6rem;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);padding:0.4rem 0;border-bottom:1px solid rgba(201,168,76,0.12);">'+cat+'</div>';
+  });
+  if(!d.skills || !d.skills.length){ document.getElementById('skill-list').innerHTML='<div style="color:var(--muted);font-size:0.82rem;">No skills added yet.</div>'; return; }
+  document.getElementById('skill-list').innerHTML = d.skills.map((s,i)=>`
+    <div class="acard" style="margin-bottom:0.8rem;">
+      <div class="acard-hd">
+        <div class="acard-ttl">${s.cat} — ${s.name}</div>
+        <div style="display:flex;gap:0.4rem;">
+          <button class="ibb" onclick="moveSkill(${i},-1)" title="Move Up" style="font-size:0.8rem;">↑</button>
+          <button class="ibb" onclick="moveSkill(${i},1)" title="Move Down" style="font-size:0.8rem;">↓</button>
+          <button class="ibb" onclick="rmSkill(${i})" title="Remove" style="border-color:rgba(224,112,112,0.3);">✕</button>
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fg">
+          <label class="fl">Category</label>
+          <select class="fs" onchange="upSkill(${i},'cat',this.value)">
+            <option ${s.cat==='Functional'?'selected':''}>Functional</option>
+            <option ${s.cat==='Technical'?'selected':''}>Technical</option>
+            <option ${s.cat==='Implementation'?'selected':''}>Implementation</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="fl">Skill Name</label>
+          <input class="fi" value="${s.name}" onchange="upSkill(${i},'name',this.value)"/>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="fl">Tags (comma separated)</label>
+        <input class="fi" value="${s.tags}" onchange="upSkill(${i},'tags',this.value)" placeholder="e.g. GL, AP, AR, Banking"/>
+      </div>
+      <div class="fg">
+        <label class="fl">Expert Badge (leave blank if none)</label>
+        <input class="fi" value="${s.badge||''}" onchange="upSkill(${i},'badge',this.value)" placeholder="e.g. Reporting Level Expert"/>
+      </div>
+    </div>`).join('');
+}
+function upSkill(i,k,v){const d=getData();d.skills[i][k]=v;saveData(d);}
+function rmSkill(i){if(!confirm('Remove this skill?'))return;const d=getData();d.skills.splice(i,1);saveData(d);renderSkills();}
+function moveSkill(i,dir){const d=getData();const j=i+dir;if(j<0||j>=d.skills.length)return;[d.skills[i],d.skills[j]]=[d.skills[j],d.skills[i]];saveData(d);renderSkills();}
+function addSkillItem(){const d=getData();d.skills.push({cat:'Functional',name:'New Skill',tags:'Tag 1, Tag 2',badge:''});saveData(d);renderSkills();setTimeout(()=>{const el=document.getElementById('skill-list');el.scrollTop=el.scrollHeight;},100);}
+
+function applySkillsToPage(){
+  const d=getData();
+  const cats=['Functional','Technical','Implementation'];
+  const container=document.querySelector('.skills-categories');
+  if(!container) return;
+  container.innerHTML=cats.map(cat=>{
+    const items=d.skills.filter(s=>s.cat===cat);
+    if(!items.length) return '';
+    const cards=items.map(s=>{
+      const badgeHtml=s.badge?` <span style="font-size:0.62rem;color:var(--green);border:1px solid rgba(109,223,170,0.3);background:rgba(109,223,170,0.07);padding:0.1rem 0.5rem;letter-spacing:0.1em;vertical-align:middle;margin-left:0.4rem;">${s.badge}</span>`:'';
+      const tagHtml=s.tags.split(',').map(t=>`<span class="tag">${t.trim()}</span>`).join('');
+      const dataKey=s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      return `<div class="skill-item" data-skill="${dataKey}">
+        <div class="skill-item-name">${s.name}${badgeHtml}</div>
+        <div class="skill-item-tags">${tagHtml}</div>
+        <div class="click-hint">Click to explore →</div>
+      </div>`;
+    }).join('');
+    return `<div class="reveal">
+      <div class="skill-category-title">${cat}</div>
+      <div class="skill-items">${cards}</div>
+    </div>`;
+  }).join('');
+}
+
+
+/* PASSWORD */
+function chgPwd(){
+  const c=document.getElementById('pc').value,n=document.getElementById('pn').value,cf=document.getElementById('pcf').value,m=document.getElementById('pwd-msg');
+  if(c!==getStoredPwd()){m.style.color='#e07070';m.textContent='Current password incorrect.';return;}
+  if(n.length<6){m.style.color='#e07070';m.textContent='Min 6 characters required.';return;}
+  if(n!==cf){m.style.color='#e07070';m.textContent='Passwords do not match.';return;}
+  localStorage.setItem(ADMIN_KEY,n);m.style.color='#6ddfaa';m.textContent='Password updated.';
+  document.getElementById('pc').value='';document.getElementById('pn').value='';document.getElementById('pcf').value='';
+}
+
+/* BUILD UPDATED LIVE DOM & export HTML */
+function applyAndGetHTML() {
+  const d=getData();
+  // Hero
+  const fn=document.getElementById('h-fn').value, ln=document.getElementById('h-ln').value;
+  const hbadge=document.getElementById('h-badge').value;
+  const htitle=document.getElementById('h-title').value;
+  const t1=document.getElementById('h-t1').value, t2=document.getElementById('h-t2').value, t3=document.getElementById('h-t3').value;
+  const bio=document.getElementById('h-bio').value;
+  const s=[{n:document.getElementById('s1n').value,l:document.getElementById('s1l').value},{n:document.getElementById('s2n').value,l:document.getElementById('s2l').value},{n:document.getElementById('s3n').value,l:document.getElementById('s3l').value},{n:document.getElementById('s4n').value,l:document.getElementById('s4l').value}];
+
+  const hbEl=document.querySelector('.hero-badge');
+  if(hbEl) hbEl.innerHTML='<span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite;"></span> '+hbadge;
+  const h1El=document.querySelector('h1'); if(h1El) h1El.innerHTML=fn+' <span>'+ln+'</span>';
+  const htEl=document.querySelector('.hero-title'); if(htEl) htEl.textContent=htitle;
+  const tags=document.querySelectorAll('.tagline-line');
+  if(tags[0]) tags[0].innerHTML='<strong>'+t1+'</strong>';
+  if(tags[1]) tags[1].innerHTML='<strong>'+t2+'</strong>';
+  if(tags[2]) tags[2].innerHTML='<strong>'+t3+'</strong>';
+  const hdEl=document.querySelector('.hero-desc'); if(hdEl) hdEl.textContent=bio;
+  const sn=document.querySelectorAll('.stat-num'), sl=document.querySelectorAll('.stat-label');
+  s.forEach((x,i)=>{if(sn[i])sn[i].textContent=x.n;if(sl[i])sl[i].textContent=x.l;});
+
+  // Exp
+  const epp=document.getElementById('ep').value, epr=document.getElementById('er').value, epc=document.getElementById('ec').value;
+  const epEl=document.querySelector('.timeline-period'), erEl=document.querySelector('.timeline-role'), ecEl=document.querySelector('.timeline-company');
+  if(epEl)epEl.textContent=epp; if(erEl)erEl.textContent=epr; if(ecEl)ecEl.textContent=epc;
+
+  // PAR
+  const pl=document.querySelector('.par-list');
+  if(pl) pl.innerHTML=d.par.map(p=>'<div class="par-block"><div class="par-row"><span class="par-label">Problem</span><span class="par-text">'+p.problem+'</span></div><div class="par-row"><span class="par-label">Action</span><span class="par-text">'+p.action+'</span></div><div class="par-row"><span class="par-label">Result</span><span class="par-result">'+p.result+'</span></div></div>').join('');
+
+  // Projects
+  const pg=document.querySelector('.projects-grid');
+  if(pg) pg.innerHTML=d.projects.map(p=>{
+    const lv=p.status==='live';
+    const sb=lv?'<span class="proj-live">Live</span>':'<span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(138,128,112,0.25);padding:0.14rem 0.55rem;">Completed</span>';
+    const wk=p.work.split('\n').filter(Boolean).map(l=>'<div class="proj-detail">'+l+'</div>').join('');
+    const tg=p.tags.split(',').map(t=>'<span class="tag">'+t.trim()+'</span>').join('');
+    return '<div class="project-card reveal"><div class="proj-type-row"><span class="proj-type-label">'+p.type+'</span>'+sb+'</div><div class="project-name">'+p.name+'</div><div class="project-industry">'+p.industry+'</div><div class="project-role-badge">'+p.role+'</div><div class="proj-details">'+wk+'</div><div class="proj-result"><div class="proj-result-label">Result</div><div class="proj-result-text">'+p.result+'</div></div><div class="proj-tags">'+tg+'</div></div>';
+  }).join('');
+
+  // Solutions
+  const sg=document.querySelector('.solutions-grid');
+  if(sg) sg.innerHTML=d.solutions.map(s=>'<div class="solution-card reveal"><div class="solution-number">'+s.num+'</div><div class="solution-type">'+s.type+'</div><div class="solution-title">'+s.title+'</div><div class="solution-desc">'+s.desc+'</div><div class="solution-impact">'+s.impact+'</div></div>').join('');
+
+  // Tools
+  const tg=document.querySelector('.tools-grid');
+  if(tg) tg.innerHTML=d.tools.map(t=>'<div class="tool-card reveal"><div class="tool-icon">'+t.icon+'</div><div class="tool-name">'+t.name+'</div><div class="tool-sub">'+t.sub+'</div></div>').join('');
+
+  // Education
+  const eg=document.querySelector('.edu-grid');
+  if(eg) eg.innerHTML=d.edu.map(e=>{
+    const cl=e.certLink?'<a class="cert-link" href="'+e.certLink+'" target="_blank">View Certificate</a>':'';
+    const pr=e.progress?'<div class="progress-wrap"><div class="progress-label">'+e.progress+'% Complete</div><div class="progress-bar"><div class="progress-fill" style="width:'+e.progress+'%"></div></div></div>':'';
+    return '<div class="edu-card reveal"><div class="edu-icon">'+e.icon+'</div><div class="edu-degree">'+e.degree+'</div><div class="edu-inst">'+e.inst+'</div><div class="edu-year">'+e.year+'</div>'+cl+pr+'</div>';
+  }).join('');
+
+  // Contact
+  const em=document.getElementById('ct-e').value, ph=document.getElementById('ct-p').value;
+  const li=document.getElementById('ct-li').value, loc=document.getElementById('ct-loc').value;
+  const ctag=document.getElementById('ct-tag').value, csub=document.getElementById('ct-sub').value;
+  const cg=document.querySelector('.contact-grid');
+  if(cg) cg.innerHTML='<a href="mailto:'+em+'" class="contact-item"><div class="contact-icon">📧</div><div class="contact-label">Email</div><div class="contact-value">'+em+'</div></a><a href="tel:'+ph.replace(/\s/g,'')+'" class="contact-item"><div class="contact-icon">📱</div><div class="contact-label">Phone</div><div class="contact-value">'+ph+'</div></a><a href="'+li+'" target="_blank" class="contact-item"><div class="contact-icon">💼</div><div class="contact-label">LinkedIn</div><div class="contact-value">View Profile</div></a><div class="contact-item" style="cursor:default;"><div class="contact-icon">📍</div><div class="contact-label">Location</div><div class="contact-value">'+loc+'</div></div>';
+  const ci=document.querySelector('.contact-intent'); if(ci) ci.textContent=ctag;
+  const cs=document.querySelector('.contact-sub'); if(cs) cs.textContent=csub;
+
+  applySkillsToPage();
+  // Remove admin overlay from clone
+  closeAdminPanel();
+  const adminFab=document.getElementById('adminFab'); if(adminFab) adminFab.style.display='none';
+  const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  openAdminPanel();
+  if(adminFab) adminFab.style.display=window.location.hash==='#admin'?'flex':'none';
+  return html;
+}
+
+function doExport(){
+  const html=applyAndGetHTML();
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='krishnaseelan_portfolio.html'; a.click();
+  showToast('Portfolio exported!','success');
+}
+
+async function doPublish(){
+  const gh=JSON.parse(localStorage.getItem(GH_KEY)||'{}');
+  if(!gh.user||!gh.repo||!gh.token){showToast('Set up GitHub settings first.','error');return;}
+  showToast('Publishing to GitHub...','');
+  const html=applyAndGetHTML();
+  const content=btoa(unescape(encodeURIComponent(html)));
+  const file=gh.file||'index.html';
+  const url='https://api.github.com/repos/'+gh.user+'/'+gh.repo+'/contents/'+file;
+  try{
+    let sha='';
+    const gr=await fetch(url,{headers:{Authorization:'token '+gh.token}});
+    if(gr.ok){const j=await gr.json();sha=j.sha;}
+    const body={message:'Portfolio update — '+new Date().toLocaleDateString(),content,...(sha?{sha}:{})};
+    const pr=await fetch(url,{method:'PUT',headers:{Authorization:'token '+gh.token,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(pr.ok){showToast('✓ Published to GitHub!','success');}
+    else{const e=await pr.json();showToast('Error: '+(e.message||'Failed'),'error');}
+  }catch(e){showToast('Network error.','error');}
+}
+</script>
+
+
+  <style>
+  .ap-overlay{position:fixed;inset:0;z-index:2000;background:rgba(5,5,10,0.97);backdrop-filter:blur(8px);overflow-y:auto;font-family:'DM Sans',sans-serif;color:#e8e0d4;}
+  .ap-overlay::-webkit-scrollbar{width:4px;}.ap-overlay::-webkit-scrollbar-thumb{background:#c9a84c;}
+  .ap-header{position:sticky;top:0;z-index:10;background:rgba(10,10,15,0.98);border-bottom:1px solid rgba(201,168,76,0.2);padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .ap-header h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#c9a84c;margin:0;}
+  .ap-hbtns{display:flex;gap:0.7rem;}
+  .apb{border:none;padding:0.6rem 1.3rem;font-size:0.74rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+  .apb.gold{background:#c9a84c;color:#0a0a0f;}.apb.gold:hover{background:#e8c97a;}
+  .apb.out{background:transparent;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);}.apb.out:hover{border-color:#c9a84c;}
+  .apb.grey{background:transparent;color:#7a7264;border:1px solid rgba(138,128,112,0.25);}.apb.grey:hover{border-color:#7a7264;color:#e8e0d4;}
+  .ap-body{padding:2rem 2.5rem;display:grid;grid-template-columns:200px 1fr;gap:2rem;}
+  .ap-nav{list-style:none;padding:0;margin:0;position:sticky;top:80px;align-self:start;}
+  .ap-nav li{padding:0.6rem 1rem;font-size:0.77rem;letter-spacing:0.06em;color:#7a7264;cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+  .ap-nav li:hover{color:#e8e0d4;background:rgba(201,168,76,0.04);}
+  .ap-nav li.on{color:#c9a84c;border-left-color:#c9a84c;background:rgba(201,168,76,0.07);}
+  .ap-sec{display:none;}.ap-sec.on{display:block;}
+  .ap-stitle{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#e8e0d4;margin-bottom:0.3rem;}
+  .ap-ssub{font-size:0.79rem;color:#7a7264;margin-bottom:1.6rem;}
+  .fl{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;display:block;}
+  .fi,.ft,.fs{width:100%;background:#181826;border:1px solid rgba(201,168,76,0.15);color:#e8e0d4;padding:0.65rem 0.85rem;font-size:0.84rem;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.3s;}
+  .fi:focus,.ft:focus,.fs:focus{border-color:#c9a84c;}
+  .ft{resize:vertical;min-height:72px;}
+  .fg{margin-bottom:1.2rem;}
+  .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  .acard{background:#181826;border:1px solid rgba(201,168,76,0.12);padding:1.3rem;margin-bottom:1rem;}
+  .acard-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .acard-ttl{font-size:0.84rem;font-weight:500;color:#c9a84c;}
+  .ibb{background:transparent;border:1px solid rgba(138,128,112,0.2);color:#7a7264;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.72rem;transition:all 0.2s;}
+  .ibb:hover{border-color:#e07070;color:#e07070;}
+  .add-btn{width:100%;background:transparent;border:1px dashed rgba(201,168,76,0.25);color:#7a7264;padding:0.8rem;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;}
+  .add-btn:hover{border-color:#c9a84c;color:#c9a84c;}
+  .adiv{height:1px;background:rgba(201,168,76,0.1);margin:1.4rem 0;}
+  .sr{display:flex;gap:0.5rem;margin-top:0.4rem;}
+  .so{font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;cursor:pointer;border:1px solid rgba(138,128,112,0.25);color:#7a7264;transition:all 0.2s;}
+  .so.live{border-color:#6ddfaa;color:#6ddfaa;background:rgba(109,223,170,0.07);}
+  .so.done{border-color:#7a7264;color:#e8e0d4;background:rgba(138,128,112,0.07);}
+  .gh-info{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);padding:1.1rem 1.3rem;margin-bottom:1.4rem;font-size:0.82rem;color:#b0a898;line-height:1.7;}
+  .gh-info strong{color:#c9a84c;}.gh-info ol{padding-left:1.1rem;margin-top:0.4rem;}.gh-info li{margin-bottom:0.25rem;}
+  .gh-info code{background:#181826;border:1px solid rgba(201,168,76,0.15);padding:0.1rem 0.4rem;font-size:0.78rem;color:#e8c97a;}
+  .ghst{font-size:0.77rem;margin-top:0.5rem;}
+  .ghst.ok{color:#6ddfaa;}.ghst.err{color:#e07070;}
+  @media(max-width:768px){.ap-body{grid-template-columns:1fr;}.ap-nav{position:relative;top:0;display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1rem;}.ap-nav li{border-left:none;border-bottom:2px solid transparent;padding:0.4rem 0.7rem;}}
+  </style>
+  
+  <style>
+  .ap-overlay{position:fixed;inset:0;z-index:2000;background:rgba(5,5,10,0.97);backdrop-filter:blur(8px);overflow-y:auto;font-family:'DM Sans',sans-serif;color:#e8e0d4;}
+  .ap-overlay::-webkit-scrollbar{width:4px;}.ap-overlay::-webkit-scrollbar-thumb{background:#c9a84c;}
+  .ap-header{position:sticky;top:0;z-index:10;background:rgba(10,10,15,0.98);border-bottom:1px solid rgba(201,168,76,0.2);padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .ap-header h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#c9a84c;margin:0;}
+  .ap-hbtns{display:flex;gap:0.7rem;}
+  .apb{border:none;padding:0.6rem 1.3rem;font-size:0.74rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+  .apb.gold{background:#c9a84c;color:#0a0a0f;}.apb.gold:hover{background:#e8c97a;}
+  .apb.out{background:transparent;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);}.apb.out:hover{border-color:#c9a84c;}
+  .apb.grey{background:transparent;color:#7a7264;border:1px solid rgba(138,128,112,0.25);}.apb.grey:hover{border-color:#7a7264;color:#e8e0d4;}
+  .ap-body{padding:2rem 2.5rem;display:grid;grid-template-columns:200px 1fr;gap:2rem;}
+  .ap-nav{list-style:none;padding:0;margin:0;position:sticky;top:80px;align-self:start;}
+  .ap-nav li{padding:0.6rem 1rem;font-size:0.77rem;letter-spacing:0.06em;color:#7a7264;cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+  .ap-nav li:hover{color:#e8e0d4;background:rgba(201,168,76,0.04);}
+  .ap-nav li.on{color:#c9a84c;border-left-color:#c9a84c;background:rgba(201,168,76,0.07);}
+  .ap-sec{display:none;}.ap-sec.on{display:block;}
+  .ap-stitle{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#e8e0d4;margin-bottom:0.3rem;}
+  .ap-ssub{font-size:0.79rem;color:#7a7264;margin-bottom:1.6rem;}
+  .fl{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;display:block;}
+  .fi,.ft,.fs{width:100%;background:#181826;border:1px solid rgba(201,168,76,0.15);color:#e8e0d4;padding:0.65rem 0.85rem;font-size:0.84rem;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.3s;}
+  .fi:focus,.ft:focus,.fs:focus{border-color:#c9a84c;}
+  .ft{resize:vertical;min-height:72px;}
+  .fg{margin-bottom:1.2rem;}
+  .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  .acard{background:#181826;border:1px solid rgba(201,168,76,0.12);padding:1.3rem;margin-bottom:1rem;}
+  .acard-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .acard-ttl{font-size:0.84rem;font-weight:500;color:#c9a84c;}
+  .ibb{background:transparent;border:1px solid rgba(138,128,112,0.2);color:#7a7264;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.72rem;transition:all 0.2s;}
+  .ibb:hover{border-color:#e07070;color:#e07070;}
+  .add-btn{width:100%;background:transparent;border:1px dashed rgba(201,168,76,0.25);color:#7a7264;padding:0.8rem;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;}
+  .add-btn:hover{border-color:#c9a84c;color:#c9a84c;}
+  .adiv{height:1px;background:rgba(201,168,76,0.1);margin:1.4rem 0;}
+  .sr{display:flex;gap:0.5rem;margin-top:0.4rem;}
+  .so{font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;cursor:pointer;border:1px solid rgba(138,128,112,0.25);color:#7a7264;transition:all 0.2s;}
+  .so.live{border-color:#6ddfaa;color:#6ddfaa;background:rgba(109,223,170,0.07);}
+  .so.done{border-color:#7a7264;color:#e8e0d4;background:rgba(138,128,112,0.07);}
+  .gh-info{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);padding:1.1rem 1.3rem;margin-bottom:1.4rem;font-size:0.82rem;color:#b0a898;line-height:1.7;}
+  .gh-info strong{color:#c9a84c;}.gh-info ol{padding-left:1.1rem;margin-top:0.4rem;}.gh-info li{margin-bottom:0.25rem;}
+  .gh-info code{background:#181826;border:1px solid rgba(201,168,76,0.15);padding:0.1rem 0.4rem;font-size:0.78rem;color:#e8c97a;}
+  .ghst{font-size:0.77rem;margin-top:0.5rem;}
+  .ghst.ok{color:#6ddfaa;}.ghst.err{color:#e07070;}
+  @media(max-width:768px){.ap-body{grid-template-columns:1fr;}.ap-nav{position:relative;top:0;display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1rem;}.ap-nav li{border-left:none;border-bottom:2px solid transparent;padding:0.4rem 0.7rem;}}
+  </style>
+  
+  <style>
+  .ap-overlay{position:fixed;inset:0;z-index:2000;background:rgba(5,5,10,0.97);backdrop-filter:blur(8px);overflow-y:auto;font-family:'DM Sans',sans-serif;color:#e8e0d4;}
+  .ap-overlay::-webkit-scrollbar{width:4px;}.ap-overlay::-webkit-scrollbar-thumb{background:#c9a84c;}
+  .ap-header{position:sticky;top:0;z-index:10;background:rgba(10,10,15,0.98);border-bottom:1px solid rgba(201,168,76,0.2);padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .ap-header h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#c9a84c;margin:0;}
+  .ap-hbtns{display:flex;gap:0.7rem;}
+  .apb{border:none;padding:0.6rem 1.3rem;font-size:0.74rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+  .apb.gold{background:#c9a84c;color:#0a0a0f;}.apb.gold:hover{background:#e8c97a;}
+  .apb.out{background:transparent;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);}.apb.out:hover{border-color:#c9a84c;}
+  .apb.grey{background:transparent;color:#7a7264;border:1px solid rgba(138,128,112,0.25);}.apb.grey:hover{border-color:#7a7264;color:#e8e0d4;}
+  .ap-body{padding:2rem 2.5rem;display:grid;grid-template-columns:200px 1fr;gap:2rem;}
+  .ap-nav{list-style:none;padding:0;margin:0;position:sticky;top:80px;align-self:start;}
+  .ap-nav li{padding:0.6rem 1rem;font-size:0.77rem;letter-spacing:0.06em;color:#7a7264;cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+  .ap-nav li:hover{color:#e8e0d4;background:rgba(201,168,76,0.04);}
+  .ap-nav li.on{color:#c9a84c;border-left-color:#c9a84c;background:rgba(201,168,76,0.07);}
+  .ap-sec{display:none;}.ap-sec.on{display:block;}
+  .ap-stitle{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#e8e0d4;margin-bottom:0.3rem;}
+  .ap-ssub{font-size:0.79rem;color:#7a7264;margin-bottom:1.6rem;}
+  .fl{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;display:block;}
+  .fi,.ft,.fs{width:100%;background:#181826;border:1px solid rgba(201,168,76,0.15);color:#e8e0d4;padding:0.65rem 0.85rem;font-size:0.84rem;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.3s;}
+  .fi:focus,.ft:focus,.fs:focus{border-color:#c9a84c;}
+  .ft{resize:vertical;min-height:72px;}
+  .fg{margin-bottom:1.2rem;}
+  .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  .acard{background:#181826;border:1px solid rgba(201,168,76,0.12);padding:1.3rem;margin-bottom:1rem;}
+  .acard-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .acard-ttl{font-size:0.84rem;font-weight:500;color:#c9a84c;}
+  .ibb{background:transparent;border:1px solid rgba(138,128,112,0.2);color:#7a7264;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.72rem;transition:all 0.2s;}
+  .ibb:hover{border-color:#e07070;color:#e07070;}
+  .add-btn{width:100%;background:transparent;border:1px dashed rgba(201,168,76,0.25);color:#7a7264;padding:0.8rem;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;}
+  .add-btn:hover{border-color:#c9a84c;color:#c9a84c;}
+  .adiv{height:1px;background:rgba(201,168,76,0.1);margin:1.4rem 0;}
+  .sr{display:flex;gap:0.5rem;margin-top:0.4rem;}
+  .so{font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;cursor:pointer;border:1px solid rgba(138,128,112,0.25);color:#7a7264;transition:all 0.2s;}
+  .so.live{border-color:#6ddfaa;color:#6ddfaa;background:rgba(109,223,170,0.07);}
+  .so.done{border-color:#7a7264;color:#e8e0d4;background:rgba(138,128,112,0.07);}
+  .gh-info{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);padding:1.1rem 1.3rem;margin-bottom:1.4rem;font-size:0.82rem;color:#b0a898;line-height:1.7;}
+  .gh-info strong{color:#c9a84c;}.gh-info ol{padding-left:1.1rem;margin-top:0.4rem;}.gh-info li{margin-bottom:0.25rem;}
+  .gh-info code{background:#181826;border:1px solid rgba(201,168,76,0.15);padding:0.1rem 0.4rem;font-size:0.78rem;color:#e8c97a;}
+  .ghst{font-size:0.77rem;margin-top:0.5rem;}
+  .ghst.ok{color:#6ddfaa;}.ghst.err{color:#e07070;}
+  @media(max-width:768px){.ap-body{grid-template-columns:1fr;}.ap-nav{position:relative;top:0;display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1rem;}.ap-nav li{border-left:none;border-bottom:2px solid transparent;padding:0.4rem 0.7rem;}}
+  </style>
+  
+  <style>
+  .ap-overlay{position:fixed;inset:0;z-index:2000;background:rgba(5,5,10,0.97);backdrop-filter:blur(8px);overflow-y:auto;font-family:'DM Sans',sans-serif;color:#e8e0d4;}
+  .ap-overlay::-webkit-scrollbar{width:4px;}.ap-overlay::-webkit-scrollbar-thumb{background:#c9a84c;}
+  .ap-header{position:sticky;top:0;z-index:10;background:rgba(10,10,15,0.98);border-bottom:1px solid rgba(201,168,76,0.2);padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .ap-header h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#c9a84c;margin:0;}
+  .ap-hbtns{display:flex;gap:0.7rem;}
+  .apb{border:none;padding:0.6rem 1.3rem;font-size:0.74rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+  .apb.gold{background:#c9a84c;color:#0a0a0f;}.apb.gold:hover{background:#e8c97a;}
+  .apb.out{background:transparent;color:#c9a84c;border:1px solid rgba(201,168,76,0.3);}.apb.out:hover{border-color:#c9a84c;}
+  .apb.grey{background:transparent;color:#7a7264;border:1px solid rgba(138,128,112,0.25);}.apb.grey:hover{border-color:#7a7264;color:#e8e0d4;}
+  .ap-body{padding:2rem 2.5rem;display:grid;grid-template-columns:200px 1fr;gap:2rem;}
+  .ap-nav{list-style:none;padding:0;margin:0;position:sticky;top:80px;align-self:start;}
+  .ap-nav li{padding:0.6rem 1rem;font-size:0.77rem;letter-spacing:0.06em;color:#7a7264;cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+  .ap-nav li:hover{color:#e8e0d4;background:rgba(201,168,76,0.04);}
+  .ap-nav li.on{color:#c9a84c;border-left-color:#c9a84c;background:rgba(201,168,76,0.07);}
+  .ap-sec{display:none;}.ap-sec.on{display:block;}
+  .ap-stitle{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#e8e0d4;margin-bottom:0.3rem;}
+  .ap-ssub{font-size:0.79rem;color:#7a7264;margin-bottom:1.6rem;}
+  .fl{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;display:block;}
+  .fi,.ft,.fs{width:100%;background:#181826;border:1px solid rgba(201,168,76,0.15);color:#e8e0d4;padding:0.65rem 0.85rem;font-size:0.84rem;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.3s;}
+  .fi:focus,.ft:focus,.fs:focus{border-color:#c9a84c;}
+  .ft{resize:vertical;min-height:72px;}
+  .fg{margin-bottom:1.2rem;}
+  .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  .acard{background:#181826;border:1px solid rgba(201,168,76,0.12);padding:1.3rem;margin-bottom:1rem;}
+  .acard-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+  .acard-ttl{font-size:0.84rem;font-weight:500;color:#c9a84c;}
+  .ibb{background:transparent;border:1px solid rgba(138,128,112,0.2);color:#7a7264;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.72rem;transition:all 0.2s;}
+  .ibb:hover{border-color:#e07070;color:#e07070;}
+  .add-btn{width:100%;background:transparent;border:1px dashed rgba(201,168,76,0.25);color:#7a7264;padding:0.8rem;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;}
+  .add-btn:hover{border-color:#c9a84c;color:#c9a84c;}
+  .adiv{height:1px;background:rgba(201,168,76,0.1);margin:1.4rem 0;}
+  .sr{display:flex;gap:0.5rem;margin-top:0.4rem;}
+  .so{font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;cursor:pointer;border:1px solid rgba(138,128,112,0.25);color:#7a7264;transition:all 0.2s;}
+  .so.live{border-color:#6ddfaa;color:#6ddfaa;background:rgba(109,223,170,0.07);}
+  .so.done{border-color:#7a7264;color:#e8e0d4;background:rgba(138,128,112,0.07);}
+  .gh-info{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);padding:1.1rem 1.3rem;margin-bottom:1.4rem;font-size:0.82rem;color:#b0a898;line-height:1.7;}
+  .gh-info strong{color:#c9a84c;}.gh-info ol{padding-left:1.1rem;margin-top:0.4rem;}.gh-info li{margin-bottom:0.25rem;}
+  .gh-info code{background:#181826;border:1px solid rgba(201,168,76,0.15);padding:0.1rem 0.4rem;font-size:0.78rem;color:#e8c97a;}
+  .ghst{font-size:0.77rem;margin-top:0.5rem;}
+  .ghst.ok{color:#6ddfaa;}.ghst.err{color:#e07070;}
+  @media(max-width:768px){.ap-body{grid-template-columns:1fr;}.ap-nav{position:relative;top:0;display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1rem;}.ap-nav li{border-left:none;border-bottom:2px solid transparent;padding:0.4rem 0.7rem;}}
+  </style>
+  </body></html>
